@@ -10,6 +10,8 @@
 }
 
 body {
+  margin: 0;
+  
   font-family: Poppins, Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
@@ -21,6 +23,10 @@ body {
 
 .flex.flex--column {
   flex-direction: column;
+}
+
+.flex.justify--center {
+  justify-content: center;
 }
 
 .flex.justify--between {
@@ -35,13 +41,16 @@ body {
   gap: 0.5em;
 }
 
+/* page utilities */
+.container {
+  margin: 0 auto;
+  max-width: 1536px;
+  width: 100%;
+}
+
 /* resets */
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
 }
 
 h1,
