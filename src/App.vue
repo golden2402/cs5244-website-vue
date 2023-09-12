@@ -3,31 +3,42 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <div class="page">
-    <header>
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div class="page flex flex--column">
+    <header class="flex justify--between align--center">
+      <RouterLink to="/" class="title flex align--center gap--small">
+        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
+        <h2>Bookmart</h2>
+      </RouterLink>
 
       <div class="wrapper">
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/category">Category</RouterLink>
-        </nav>
+        <nav></nav>
       </div>
     </header>
 
-    <div class="page">
-      <RouterView class="page__slot" />
-      <footer>
+    <RouterView class="page__slot" />
 
-      </footer>
-    </div>
+    <footer class="flex justify--between align--center"></footer>
   </div>
 </template>
 
 <style scoped>
+/* header */
+header {
+  padding: 1em;
+}
+
+header .title {
+  height: 100%;
+}
+
+/* footer */
+footer {
+  padding: 1em;
+}
+
+/* page utility */
 .page {
-  display: flex;
-  flex-direction: column;
+  min-height: 100vh;
 }
 
 .page__slot {
