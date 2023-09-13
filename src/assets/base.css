@@ -1,7 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 :root {
-  /* TODO */
+  --background-color: #ffffff;
+  --secondary-color: #ddefff;
+
+  --text-color: #000000;
+  --text-color-mute: #707070;
+
+  --default-font-family: Poppins, Arial, Helvetica, sans-serif;
+  --default-outline: 1px solid rgba(0, 0, 0, 0.1);
+  --default-border-radius: 0.25em;
+
+  --default-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  --default-box-shadow-heavy: 0 0 6px 0 rgba(0, 0, 0, 0.4);
+
+  --primary-color: #0087ff;
+  --primary-color-alt: #ffffff;
+
+  --secondary-color: var(--foreground-color);
+  --secondary-color-alt: var(--primary-color);
+
+  --danger-color: #ff4848;
 }
 
 /* semantic color variables for this project */
@@ -11,8 +30,8 @@
 
 body {
   margin: 0;
-  
-  font-family: Poppins, Arial, Helvetica, sans-serif;
+
+  font-family: var(--default-font-family);
   font-size: 14px;
 }
 

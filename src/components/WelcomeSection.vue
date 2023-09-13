@@ -8,16 +8,14 @@ import vueIcon from "@/assets/logo.svg";
 <template>
   <div class="flex flex--column justify--between">
     <header class="eyecatcher">
-      <h1 class="title">
-        Every book you would ever need, all in one place
-      </h1>
+      <h1 class="title">Every book you would ever need, all in one place</h1>
       <p class="blurb">
         Bookmart serves dedicated readers searching for their perfect book.
       </p>
     </header>
     <div class="navigation">
       <header class="navigation__header">
-        <h3>Get Started</h3>
+        <h3 class="title">Get Started</h3>
         <p>Search by...</p>
       </header>
 
@@ -51,28 +49,25 @@ import vueIcon from "@/assets/logo.svg";
   flex: 1;
 }
 
-.eyecatcher {
-
-}
-
 .eyecatcher .title {
-
+  color: var(--primary-color);
+  
+  font-size: 3rem;
+  line-height: 1.2;
 }
 
 .eyecatcher .blurb {
-  
+  color: var(--text-color-mute);
+  font-size: 1.2rem;
 }
 
 .navigation__header {
   line-height: 1.2;
 }
 
-.navigation__header h3 {
-
-}
-
-.navigation__header p {
-
+.navigation__header h3.title {
+  color: var(--primary-color);
+  text-transform: uppercase;
 }
 
 .cta {
