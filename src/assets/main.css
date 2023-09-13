@@ -32,6 +32,10 @@
   gap: 0.5em;
 }
 
+.flex.gap--medium {
+  gap: 1em;
+}
+
 .flex.gap--large {
   gap: 2em;
 }
@@ -46,13 +50,13 @@
 /* boxes */
 .box--primary {
   padding: 0.4em;
-  
+
   background-color: var(--primary-color);
   color: var(--primary-color-alt);
-  
+
   outline: var(--default-outline);
   border-radius: var(--default-border-radius);
-  
+
   box-shadow: var(--default-box-shadow);
   transition: box-shadow 0.2s;
 }
@@ -63,13 +67,13 @@
 
 .box--secondary {
   padding: 0.4em;
-  
+
   background-color: var(--secondary-color);
   color: var(--secondary-color-alt);
-  
+
   outline: var(--default-outline);
   border-radius: var(--default-border-radius);
-  
+
   box-shadow: var(--default-box-shadow);
   transition: box-shadow 0.2s;
 }

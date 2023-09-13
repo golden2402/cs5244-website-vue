@@ -3,6 +3,7 @@ import { RouterLink } from "vue-router";
 import QuickstartCard from "./QuickstartCard.vue";
 
 import vueIcon from "@/assets/logo.svg";
+import IconArrow from "@/assets/icons/IconArrow.vue";
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import vueIcon from "@/assets/logo.svg";
       <h1 class="title">Every book you would ever need, all in one place</h1>
       <p class="blurb">Bookmart serves dedicated readers searching for their perfect book.</p>
     </header>
-    <div class="navigation flex flex--column gap--small">
+    <div class="navigation flex flex--column gap--medium">
       <header class="navigation__header">
         <h3 class="title">Get Started</h3>
         <p>Search by...</p>
@@ -19,11 +20,13 @@ import vueIcon from "@/assets/logo.svg";
 
       <div class="search__types flex gap--small">
         <QuickstartCard
+          class="card--hover"
           :icon="vueIcon"
           title="Title"
           blurb="Find exactly what you need in seconds."
         />
         <QuickstartCard
+          class="card--hover"
           :icon="vueIcon"
           title="Genre"
           blurb="Find exactly what you need in seconds."
@@ -33,7 +36,7 @@ import vueIcon from "@/assets/logo.svg";
       <RouterLink to="/category">
         <div class="cta box--primary flex justify--between align--center">
           <h1 class="cta__title">Start Shopping</h1>
-          <img :src="vueIcon" width="36" class="arrow" />
+          <IconArrow class="arrow" width="36" height="36" />
         </div>
       </RouterLink>
     </div>
