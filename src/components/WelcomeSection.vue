@@ -89,4 +89,13 @@ import vueIcon from "@/assets/logo.svg";
 
   text-transform: uppercase;
 }
+
+.arrow {
+  transform: translateX(-25%);
+  transition: transform 200ms;
+}
+
+.cta:hover .arrow {
+  transform: translateX(0);
+}
 </style>
