@@ -1,7 +1,6 @@
 @import "./base.css";
 
 #app {
-  font-weight: normal;
 }
 
 /* flex utilities */
@@ -21,12 +20,20 @@
   justify-content: space-between;
 }
 
+.flex.justify--end {
+  justify-content: end;
+}
+
 .flex.align--center {
   align-items: center;
 }
 
 .flex.gap--small {
   gap: 0.5em;
+}
+
+.flex.gap--large {
+  gap: 2em;
 }
 
 /* page utilities */
