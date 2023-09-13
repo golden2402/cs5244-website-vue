@@ -3,3 +3,70 @@
 #app {
   font-weight: normal;
 }
+
+/* flex utilities */
+.flex {
+  display: flex;
+}
+
+.flex.flex--column {
+  flex-direction: column;
+}
+
+.flex.justify--center {
+  justify-content: center;
+}
+
+.flex.justify--between {
+  justify-content: space-between;
+}
+
+.flex.align--center {
+  align-items: center;
+}
+
+.flex.gap--small {
+  gap: 0.5em;
+}
+
+/* page utilities */
+.container {
+  margin: 0 auto;
+  max-width: 1536px;
+  width: 100%;
+}
+
+/* boxes */
+.box--primary {
+  padding: 0.4em;
+  
+  background-color: var(--primary-color);
+  color: var(--primary-color-alt);
+  
+  outline: var(--default-outline);
+  border-radius: var(--default-border-radius);
+  
+  box-shadow: var(--default-box-shadow);
+  transition: box-shadow 0.2s;
+}
+
+.box--primary:hover {
+  box-shadow: var(--default-box-shadow-heavy);
+}
+
+.box--secondary {
+  padding: 0.4em;
+  
+  background-color: var(--secondary-color);
+  color: var(--secondary-color-alt);
+  
+  outline: var(--default-outline);
+  border-radius: var(--default-border-radius);
+  
+  box-shadow: var(--default-box-shadow);
+  transition: box-shadow 0.2s;
+}
+
+.box--secondary:hover {
+  box-shadow: var(--default-box-shadow-heavy);
+}

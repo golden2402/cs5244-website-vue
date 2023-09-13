@@ -35,38 +35,6 @@ body {
   font-size: 14px;
 }
 
-/* flex utilities */
-.flex {
-  display: flex;
-}
-
-.flex.flex--column {
-  flex-direction: column;
-}
-
-.flex.justify--center {
-  justify-content: center;
-}
-
-.flex.justify--between {
-  justify-content: space-between;
-}
-
-.flex.align--center {
-  align-items: center;
-}
-
-.flex.gap--small {
-  gap: 0.5em;
-}
-
-/* page utilities */
-.container {
-  margin: 0 auto;
-  max-width: 1536px;
-  width: 100%;
-}
-
 /* resets */
 * {
   box-sizing: border-box;
