@@ -9,9 +9,7 @@ import vueIcon from "@/assets/logo.svg";
   <div class="quickstart flex flex--column align--center gap--large">
     <header class="eyecatcher flex flex--column justify--end">
       <h1 class="title">Every book you would ever need, all in one place</h1>
-      <p class="blurb">
-        Bookmart serves dedicated readers searching for their perfect book.
-      </p>
+      <p class="blurb">Bookmart serves dedicated readers searching for their perfect book.</p>
     </header>
     <div class="navigation flex flex--column gap--small">
       <header class="navigation__header">
@@ -22,7 +20,7 @@ import vueIcon from "@/assets/logo.svg";
       <div class="search__types flex gap--small">
         <QuickstartCard
           :icon="vueIcon"
-          title="Title" 
+          title="Title"
           blurb="Find exactly what you need in seconds."
         />
         <QuickstartCard
@@ -35,11 +33,7 @@ import vueIcon from "@/assets/logo.svg";
       <RouterLink to="/category">
         <div class="cta box--primary flex justify--between align--center">
           <h1 class="cta__title">Start Shopping</h1>
-          <img
-            :src="vueIcon"
-            width=36
-            class="arrow"
-          />
+          <img :src="vueIcon" width="36" class="arrow" />
         </div>
       </RouterLink>
     </div>
@@ -57,7 +51,7 @@ import vueIcon from "@/assets/logo.svg";
 
 .eyecatcher .title {
   color: var(--primary-color);
-  
+
   font-size: 3rem;
   line-height: 1.2;
 }
