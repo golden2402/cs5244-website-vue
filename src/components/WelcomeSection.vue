@@ -6,14 +6,14 @@ import vueIcon from "@/assets/logo.svg";
 </script>
 
 <template>
-  <div class="flex flex--column justify--between">
-    <header class="eyecatcher">
+  <div class="quickstart flex flex--column align--center gap--large">
+    <header class="eyecatcher flex flex--column justify--end">
       <h1 class="title">Every book you would ever need, all in one place</h1>
       <p class="blurb">
         Bookmart serves dedicated readers searching for their perfect book.
       </p>
     </header>
-    <div class="navigation">
+    <div class="navigation flex flex--column gap--small">
       <header class="navigation__header">
         <h3 class="title">Get Started</h3>
         <p>Search by...</p>
@@ -32,20 +32,26 @@ import vueIcon from "@/assets/logo.svg";
         />
       </div>
 
-      <RouterLink to="/category" class="cta flex justify--between align--items">
-        <h1 class="cta__title">Start Shopping</h1>
-        <img
-          :src="vueIcon"
-          width=48
-          class="arrow"
-        />
+      <RouterLink to="/category">
+        <div class="cta box--primary flex justify--between align--center">
+          <h1 class="cta__title">Start Shopping</h1>
+          <img
+            :src="vueIcon"
+            width=36
+            class="arrow"
+          />
+        </div>
       </RouterLink>
     </div>
   </div>
 </template>
 
 <style>
-.quickstart__options > * {
+.quickstart {
+  height: 100%;
+}
+
+.quickstart > * {
   flex: 1;
 }
 
@@ -71,10 +77,16 @@ import vueIcon from "@/assets/logo.svg";
 }
 
 .cta {
-
+  padding: 0.6rem;
 }
 
 .cta .cta__title {
+  padding-left: 0.2rem;
+
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+
   text-transform: uppercase;
 }
 </style>
