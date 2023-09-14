@@ -4,6 +4,14 @@
   import { provide } from "vue";
   import { type CategoryGroup } from "@/types";
 
+  import FooterLinkSection from "@/components/FooterLinkSection.vue";
+  import FooterLink from "./components/FooterLink.vue";
+  import SocialMediaLink from "@/components/SocialMediaLink.vue";
+
+  import IconFacebook from "@/assets/icons/socials/IconFacebook.vue";
+  import IconInstagram from "@/assets/icons/socials/IconInstagram.vue";
+  import IconX from "@/assets/icons/socials/IconX.vue";
+
   // map category id to name:
   const categoryList = new Map<number, string>()
     // programming:
@@ -65,7 +73,30 @@
 
     <RouterView class="page__slot" />
 
-    <footer class="flex justify--between align--center"></footer>
+    <footer class="flex justify--between align--center">
+      <p class="copyright">&copy; John Golden 2023</p>
+      <div class="footer__links flex align--center gap--small">
+        <FooterLinkSection title="Socials">
+          <div class="flex gap--small">
+            <SocialMediaLink href="/">
+              <IconInstagram />
+            </SocialMediaLink>
+            <SocialMediaLink href="/">
+              <IconX />
+            </SocialMediaLink>
+            <SocialMediaLink href="/">
+              <IconFacebook />
+            </SocialMediaLink>
+          </div>
+        </FooterLinkSection>
+        <FooterLinkSection title="Links">
+          <div class="flex">
+            <FooterLink name="Directions" href="/directions" />
+            <FooterLink name="Contact" href="/contact" />
+          </div>
+        </FooterLinkSection>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -82,6 +113,14 @@
   /* footer */
   footer {
     padding: 1em;
+  }
+
+  .copyright {
+    color: var(--text-color-mute);
+  }
+
+  .footer__links {
+    font-size: 0.9em;
   }
 
   /* page utility */
