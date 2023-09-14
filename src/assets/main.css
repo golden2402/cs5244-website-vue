@@ -28,16 +28,20 @@
   align-items: center;
 }
 
+.flex.align--stretch {
+  align-items: stretch;
+}
+
 .flex.gap--small {
   gap: 0.5em;
 }
 
 .flex.gap--medium {
-  gap: 1em;
+  gap: 0.8em;
 }
 
 .flex.gap--large {
-  gap: 2em;
+  gap: 1.6em;
 }
 
 /* page utilities */

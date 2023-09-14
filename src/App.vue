@@ -4,6 +4,8 @@
   import { provide } from "vue";
   import { type CategoryGroup } from "@/types";
 
+  import Divider from "./components/BaseDivider.vue";
+
   import FooterLinkSection from "@/components/FooterLinkSection.vue";
   import FooterLink from "./components/FooterLink.vue";
   import SocialMediaLink from "@/components/SocialMediaLink.vue";
@@ -77,9 +79,9 @@
 
     <footer class="flex justify--between align--center">
       <p class="copyright">&copy; John Golden 2023</p>
-      <div class="footer__links flex align--center gap--small">
+      <div class="footer__links flex align--stretch gap--medium">
         <FooterLinkSection title="Socials">
-          <div class="flex gap--small">
+          <div class="flex gap--medium">
             <SocialMediaLink href="/">
               <IconInstagram />
             </SocialMediaLink>
@@ -91,6 +93,7 @@
             </SocialMediaLink>
           </div>
         </FooterLinkSection>
+        <Divider />
         <FooterLinkSection title="Links">
           <div class="flex">
             <FooterLink name="Directions" href="/directions" />
