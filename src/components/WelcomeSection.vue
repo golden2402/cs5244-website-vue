@@ -2,7 +2,9 @@
   import { RouterLink } from "vue-router";
   import QuickstartCard from "./QuickstartCard.vue";
 
-  import vueIcon from "@/assets/logo.svg";
+  import IconFolder from "@/assets/icons/IconFolder.vue";
+  import IconSearch from "@/assets/icons/IconSearch02.vue";
+
   import IconArrow from "@/assets/icons/IconArrow.vue";
 </script>
 
@@ -21,16 +23,22 @@
       <div class="search__types flex gap--small">
         <QuickstartCard
           class="card--hover"
-          :icon="vueIcon"
           title="Title"
           blurb="Find exactly what you need in seconds."
-        />
+        >
+          <template #icon>
+            <IconSearch />
+          </template>
+        </QuickstartCard>
         <QuickstartCard
           class="card--hover"
-          :icon="vueIcon"
           title="Genre"
           blurb="Find exactly what you need in seconds."
-        />
+        >
+          <template #icon>
+            <IconFolder />
+          </template>
+        </QuickstartCard>
       </div>
 
       <RouterLink to="/category">
@@ -53,8 +61,6 @@
   }
 
   .eyecatcher .title {
-    color: var(--primary-color);
-
     font-size: 3rem;
     line-height: 1.2;
   }
