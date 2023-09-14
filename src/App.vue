@@ -71,7 +71,9 @@
       </div>
     </header>
 
-    <RouterView class="page__slot" />
+    <main class="page__body flex">
+      <RouterView />
+    </main>
 
     <footer class="flex justify--between align--center">
       <p class="copyright">&copy; John Golden 2023</p>
@@ -128,7 +130,7 @@
     min-height: 100vh;
   }
 
-  .page__slot {
+  .page__body {
     flex-grow: 1;
   }
 </style>

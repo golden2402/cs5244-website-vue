@@ -4,18 +4,18 @@
 </script>
 
 <template>
-  <main class="container flex">
+  <div class="home container flex">
     <section>
       <WelcomeSection />
     </section>
     <section>
       <FeatureSection />
     </section>
-  </main>
+  </div>
 </template>
 
 <style scoped>
-  main > * {
+  .home > * {
     flex: 1;
     padding: 6em;
   }
