@@ -103,25 +103,25 @@
 </template>
 
 <style scoped>
-  /* header */
-  header {
+  header,
+  footer {
     padding: 1em;
+
+    background-color: var(--foreground-color);
+    outline: var(--default-outline);
+    box-shadow: var(--default-box-shadow);
   }
 
+  /* header */
   header .title {
     height: 100%;
   }
 
-  /* footer */
-  footer {
-    padding: 1em;
-  }
-
-  .copyright {
+  footer .copyright {
     color: var(--text-color-mute);
   }
 
-  .footer__links {
+  footer .footer__links {
     font-size: 0.9em;
   }
 

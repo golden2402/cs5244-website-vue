@@ -8,7 +8,7 @@
   .card {
     padding: 0.6em;
 
-    background-color: var(--background-color);
+    background-color: var(--foreground-color);
 
     outline: var(--default-outline);
     border-radius: var(--default-border-radius);
