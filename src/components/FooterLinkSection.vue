@@ -5,16 +5,16 @@
 </script>
 
 <template>
-  <section class="footer__links">
+  <section class="link__section">
     <h3>{{ title }}</h3>
     <slot></slot>
   </section>
 </template>
 
 <style scoped>
-  .footer__links h1,
-  .footer__links h2,
-  .footer__links h3 {
+  .link__section h1,
+  .link__section h2,
+  .link__section h3 {
     text-transform: uppercase;
   }
 </style>
