@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
-import QuickstartCard from "./QuickstartCard.vue";
+  import { RouterLink } from "vue-router";
+  import QuickstartCard from "./QuickstartCard.vue";
 
-import vueIcon from "@/assets/logo.svg";
-import IconArrow from "@/assets/icons/IconArrow.vue";
+  import vueIcon from "@/assets/logo.svg";
+  import IconArrow from "@/assets/icons/IconArrow.vue";
 </script>
 
 <template>
@@ -44,55 +44,55 @@ import IconArrow from "@/assets/icons/IconArrow.vue";
 </template>
 
 <style>
-.quickstart {
-  height: 100%;
-}
+  .quickstart {
+    height: 100%;
+  }
 
-.quickstart > * {
-  flex: 1;
-}
+  .quickstart > * {
+    flex: 1;
+  }
 
-.eyecatcher .title {
-  color: var(--primary-color);
+  .eyecatcher .title {
+    color: var(--primary-color);
 
-  font-size: 3rem;
-  line-height: 1.2;
-}
+    font-size: 3rem;
+    line-height: 1.2;
+  }
 
-.eyecatcher .blurb {
-  color: var(--text-color-mute);
-  font-size: 1.2rem;
-}
+  .eyecatcher .blurb {
+    color: var(--text-color-mute);
+    font-size: 1.2rem;
+  }
 
-.navigation__header {
-  line-height: 1.2;
-}
+  .navigation__header {
+    line-height: 1.2;
+  }
 
-.navigation__header h3.title {
-  color: var(--primary-color);
-  text-transform: uppercase;
-}
+  .navigation__header h3.title {
+    color: var(--primary-color);
+    text-transform: uppercase;
+  }
 
-.cta {
-  padding: 0.6rem;
-}
+  .cta {
+    padding: 0.6rem;
+  }
 
-.cta .cta__title {
-  padding-left: 0.2rem;
+  .cta .cta__title {
+    padding-left: 0.2rem;
 
-  font-size: 1.8rem;
-  font-weight: 500;
-  line-height: 1.2;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.2;
 
-  text-transform: uppercase;
-}
+    text-transform: uppercase;
+  }
 
-.arrow {
-  transform: translateX(-25%);
-  transition: transform 200ms;
-}
+  .arrow {
+    transform: translateX(-25%);
+    transition: transform 200ms;
+  }
 
-.cta:hover .arrow {
-  transform: translateX(0);
-}
+  .cta:hover .arrow {
+    transform: translateX(0);
+  }
 </style>

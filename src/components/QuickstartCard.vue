@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import BaseCard from "@/components/BaseCard.vue";
+  import BaseCard from "@/components/BaseCard.vue";
 
-defineProps<{
-  icon: string;
-  title: string;
-  blurb: string;
-}>();
+  defineProps<{
+    icon: string;
+    title: string;
+    blurb: string;
+  }>();
 </script>
 
 <template>
@@ -19,13 +19,13 @@ defineProps<{
 </template>
 
 <style scoped>
-.quickstart__card {
-  padding: 0.8em;
-}
+  .quickstart__card {
+    padding: 0.8em;
+  }
 
-.quickstart__card h1,
-.quickstart__card h2,
-.quickstart__card h3 {
-  text-transform: uppercase;
-}
+  .quickstart__card h1,
+  .quickstart__card h2,
+  .quickstart__card h3 {
+    text-transform: uppercase;
+  }
 </style>

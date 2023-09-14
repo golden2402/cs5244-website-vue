@@ -15,10 +15,8 @@
 </template>
 
 <style scoped>
-main > * {
-  flex: 1;
-  padding: 6em;
-}
-
-
+  main > * {
+    flex: 1;
+    padding: 6em;
+  }
 </style>
