@@ -1,5 +1,4 @@
 export interface BookItem {
-  id: number;
   cover: string;
   title: string;
   price: number;

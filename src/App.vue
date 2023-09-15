@@ -2,7 +2,7 @@
   import { RouterLink, RouterView } from "vue-router";
 
   import { provide } from "vue";
-  import { type CategoryGroup } from "@/types";
+  import { type BookItem, type CategoryGroup } from "@/types";
 
   import Divider from "./components/BaseDivider.vue";
 
@@ -58,6 +58,16 @@
 
   provide("categoryList", categoryList);
   provide("categoryGroups", categoryGroups);
+
+  const bookList = new Map<number, BookItem>().set(1001, {
+    cover: "https://www0.alibris-static.com/c-programming-language/isbn/9780131103627_l.jpg",
+    title: "C Programming Language",
+    price: 19.99,
+    authors: ["Dennis Ritchie", "Brian Kernighan"],
+    isPublic: true
+  });
+
+  provide("bookList", bookList);
 </script>
 
 <template>
