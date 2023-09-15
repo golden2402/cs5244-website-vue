@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div class="quickstart flex flex--column align--center gap--xl">
+  <div class="quickstart flex flex--column align--stretch gap--xl">
     <header class="eyecatcher flex flex--column justify--end">
       <h1 class="title">Every book you would ever need, all in one place</h1>
       <p class="blurb">Bookmart serves dedicated readers searching for their perfect book.</p>
@@ -20,7 +20,7 @@
         <p>Search by...</p>
       </header>
 
-      <div class="search__types flex gap--md">
+      <div class="flex gap--md">
         <QuickstartCard
           class="card--hover"
           title="Title"
@@ -33,7 +33,7 @@
         <QuickstartCard
           class="card--hover"
           title="Genre"
-          blurb="Find exactly what you need in seconds."
+          blurb="Find something new."
         >
           <template #icon>
             <IconFolder />
