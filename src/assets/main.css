@@ -32,16 +32,20 @@
   align-items: stretch;
 }
 
-.flex.gap--small {
+.flex.gap--sm {
   gap: 0.5em;
 }
 
-.flex.gap--medium {
+.flex.gap--md {
   gap: 0.8em;
 }
 
-.flex.gap--large {
+.flex.gap--lg {
   gap: 1.6em;
+}
+
+.flex.gap--xl {
+  gap: 2.4em;
 }
 
 /* page utilities */

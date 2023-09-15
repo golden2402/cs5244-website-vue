@@ -63,7 +63,7 @@
 <template>
   <div class="page flex flex--column">
     <header class="flex justify--between align--center">
-      <RouterLink to="/" class="title flex align--center gap--small">
+      <RouterLink to="/" class="title flex align--center gap--sm">
         <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
         <h2>Bookmart</h2>
       </RouterLink>
@@ -79,9 +79,9 @@
 
     <footer class="flex justify--between align--center">
       <p class="copyright">&copy; John Golden 2023</p>
-      <div class="footer__links flex align--stretch gap--medium">
+      <div class="footer__links flex align--stretch gap--md">
         <FooterLinkSection title="Socials">
-          <div class="flex gap--medium">
+          <div class="flex gap--md">
             <SocialMediaLink href="/">
               <IconInstagram />
             </SocialMediaLink>

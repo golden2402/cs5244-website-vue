@@ -9,18 +9,18 @@
 </script>
 
 <template>
-  <div class="quickstart flex flex--column align--center gap--large">
+  <div class="quickstart flex flex--column align--center gap--xl">
     <header class="eyecatcher flex flex--column justify--end">
       <h1 class="title">Every book you would ever need, all in one place</h1>
       <p class="blurb">Bookmart serves dedicated readers searching for their perfect book.</p>
     </header>
-    <div class="navigation flex flex--column gap--medium">
+    <div class="navigation flex flex--column gap--md">
       <header class="navigation__header">
         <h3 class="title">Get Started</h3>
         <p>Search by...</p>
       </header>
 
-      <div class="search__types flex gap--small">
+      <div class="search__types flex gap--md">
         <QuickstartCard
           class="card--hover"
           title="Title"
