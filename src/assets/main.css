@@ -32,6 +32,10 @@
   align-items: stretch;
 }
 
+.flex.gap--xs {
+  gap: 0.25em;
+}
+
 .flex.gap--sm {
   gap: 0.5em;
 }
@@ -46,6 +50,10 @@
 
 .flex.gap--xl {
   gap: 2.4em;
+}
+
+.flex.flex--wrap {
+  flex-wrap: wrap;
 }
 
 /* page utilities */
