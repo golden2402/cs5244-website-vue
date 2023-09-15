@@ -1,5 +1,5 @@
 export interface BookItem {
-  cover: string;
+  cover: () => string;
   title: string;
   price: number;
   authors: string[];

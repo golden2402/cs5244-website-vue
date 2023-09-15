@@ -60,7 +60,7 @@
   provide("categoryGroups", categoryGroups);
 
   const bookList = new Map<number, BookItem>().set(1001, {
-    cover: "https://www0.alibris-static.com/c-programming-language/isbn/9780131103627_l.jpg",
+    cover: () => "https://www0.alibris-static.com/c-programming-language/isbn/9780131103627_l.jpg",
     title: "C Programming Language",
     price: 19.99,
     authors: ["Dennis Ritchie", "Brian Kernighan"],
