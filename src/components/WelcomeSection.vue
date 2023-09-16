@@ -30,11 +30,7 @@
             <IconSearch />
           </template>
         </QuickstartCard>
-        <QuickstartCard
-          class="card--hover"
-          title="Genre"
-          blurb="Find something new."
-        >
+        <QuickstartCard class="card--hover" title="Genre" blurb="Find something new.">
           <template #icon>
             <IconFolder />
           </template>
