@@ -20,6 +20,7 @@
   --secondary-color: #ddefff;
   --secondary-color-alt: var(--primary-color);
 
+  --success-color: #37b86b;
   --danger-color: #ff4848;
 }
 
@@ -76,4 +77,15 @@ a {
 a,
 a:visited {
   color: inherit;
+}
+
+button,
+input,
+input[type="submit"],
+input[type="reset"] {
+  all: unset;
+}
+
+button:hover {
+  cursor: pointer;
 }

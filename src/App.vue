@@ -10,6 +10,12 @@
   import FooterLink from "./components/FooterLink.vue";
   import SocialMediaLink from "@/components/SocialMediaLink.vue";
 
+  import IconChevronDown from "./assets/icons/IconChevronDown.vue";
+  import IconFolder from "./assets/icons/IconFolder.vue";
+  import IconShoppingCart02 from "@/assets/icons/IconShoppingCart02.vue";
+  import IconSearch from "./assets/icons/IconSearch.vue";
+  import IconUser from "./assets/icons/IconUser.vue";
+
   import IconFacebook from "@/assets/icons/socials/IconFacebook.vue";
   import IconInstagram from "@/assets/icons/socials/IconInstagram.vue";
   import IconX from "@/assets/icons/socials/IconX.vue";
@@ -105,9 +111,27 @@
         <h2>Bookmart</h2>
       </RouterLink>
 
-      <div class="wrapper">
-        <nav></nav>
-      </div>
+      <nav class="flex align--stretch gap--sm">
+        <div class="box--secondary flex align--center">
+          <input placeholder="Search" />
+          <IconSearch />
+        </div>
+        <div class="box--primary flex align--center gap--sm">
+          <IconFolder />
+          Genres
+          <IconChevronDown />
+        </div>
+        <Divider />
+        <div class="box--primary flex align--center gap--sm">
+          <IconShoppingCart02 />
+          Cart
+        </div>
+        <div class="box--primary flex align--center gap--sm account">
+          <IconUser />
+          Account
+          <IconChevronDown />
+        </div>
+      </nav>
     </header>
 
     <main class="page__body flex">
@@ -155,6 +179,10 @@
   /* header */
   header .title {
     height: 100%;
+  }
+
+  .account {
+    background-color: var(--success-color);
   }
 
   footer .copyright {
