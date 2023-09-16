@@ -3,6 +3,7 @@ export interface BookItem {
   title: string;
   price: number;
   authors: string[];
+  categories: number[];
   isPublic: boolean;
 }
 

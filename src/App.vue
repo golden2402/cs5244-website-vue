@@ -59,15 +59,42 @@
   provide<Map<number, string>>("categoryList", categoryList);
   provide<readonly CategoryGroup[]>("categoryGroups", categoryGroups);
 
-  const bookList = new Map<number, BookItem>().set(1001, {
-    cover: () => "https://www0.alibris-static.com/c-programming-language/isbn/9780131103627_l.jpg",
-    title: "C Programming Language",
-    price: 19.99,
-    authors: ["Dennis Ritchie", "Brian Kernighan"],
-    isPublic: true
-  });
+  const bookList = new Map<number, BookItem>()
+    .set(1001, {
+      cover: () =>
+        "https://www0.alibris-static.com/c-programming-language/isbn/9780131103627_l.jpg",
+      title: "C Programming Language",
+      price: 19.99,
+      authors: ["Dennis Ritchie", "Brian Kernighan"],
+      categories: [1001],
+      isPublic: true
+    })
+    .set(1002, {
+      cover: () =>
+        "https://www2.alibris-static.com/the-go-programming-language/isbn/9780134190440_l.jpg",
+      title: "The Go Programming Language",
+      price: 12.99,
+      authors: ["Alan Donovan", "Brian Kernighan"],
+      categories: [1001],
+      isPublic: false
+    });
+
+  const bookCategories = new Map<number, BookItem[]>();
+  // read from the current set of books, generate map of category ids to books:
+  for (const bookItem of bookList.values()) {
+    for (const category of bookItem.categories) {
+      const categoryList = bookCategories.get(category);
+
+      if (categoryList) {
+        categoryList.push(bookItem);
+      } else {
+        bookCategories.set(category, [bookItem]);
+      }
+    }
+  }
 
   provide<Map<number, BookItem>>("bookList", bookList);
+  provide<Map<number, BookItem[]>>("bookCategories", bookCategories);
 </script>
 
 <template>
