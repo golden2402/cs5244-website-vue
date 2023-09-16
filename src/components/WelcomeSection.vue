@@ -56,6 +56,11 @@
     flex: 1;
   }
 
+  .quickstart__card {
+    flex: 1;
+    height: min-content;
+  }
+
   .eyecatcher .title {
     font-size: 3rem;
     line-height: 1.2;
