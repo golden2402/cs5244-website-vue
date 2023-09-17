@@ -15,8 +15,7 @@
 </script>
 
 <template>
-  <!-- middleman class, because we need to drill (maybe bad!?) the category identifier -->
-  <section class="flex flex--wrap gap--md">
+  <section class="book__selection__grid">
     <CategorySelection
       v-for="(book, i) of booksToDisplay"
       v-bind:key="`selection-${i}`"
@@ -24,3 +23,19 @@
     />
   </section>
 </template>
+
+<style scoped>
+  .book__selection__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+    height: max-content;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .book__selection__grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+</style>

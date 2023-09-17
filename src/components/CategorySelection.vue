@@ -18,7 +18,7 @@
   <BaseCard class="category__item">
     <div class="flex gap--sm">
       <BaseBookCover class="book__cover" :src="book.cover()" />
-      <div class="flex flex--column justify--between">
+      <div class="category__item__details flex flex--column justify--between">
         <section class="book__header">
           <h3>{{ book.title }}</h3>
           <p>by {{ book.authors.join(", ") }}</p>
@@ -43,6 +43,11 @@
 <style scoped>
   .category__item {
     height: max-content;
+    width: 440px;
+  }
+
+  .category__item__details {
+    flex-grow: 1;
   }
 
   .book__header h1,

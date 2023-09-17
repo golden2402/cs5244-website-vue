@@ -1,12 +1,12 @@
 <script setup lang="ts">
   import GenreList from "@/components/GenreList.vue";
   import CategorySelectionList from "@/components/CategorySelectionList.vue";
-  
+
   import BaseCard from "@/components/BaseCard.vue";
 </script>
 
 <template>
-  <div class="container flex gap--md">
+  <div class="category__page container flex gap--md">
     <BaseCard class="genre__selection flex flex--column gap--sm">
       <GenreList>
         <template #link="{ categoryName }">
@@ -19,6 +19,10 @@
 </template>
 
 <style scoped>
+  .category__page {
+    padding: 4em 0;
+  }
+
   .genre__selection {
     height: min-content;
     min-width: 280px;
