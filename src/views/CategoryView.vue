@@ -7,8 +7,8 @@
 
 <template>
   <div class="container flex gap--md">
-    <BaseCard class="genre__selection">
-      <GenreList class="gap--lg">
+    <BaseCard class="genre__selection flex flex--column gap--sm">
+      <GenreList>
         <template #link="{ categoryName }">
           <div class="genre__selection__link">{{ categoryName }}</div>
         </template>
@@ -31,5 +31,19 @@
 
     outline: var(--default-outline);
     border-radius: var(--default-border-radius);
+
+    transition-property: background-color, color, outline-color;
+    transition-duration: 150ms;
+  }
+
+  .genre__selection__link:hover {
+    background-color: var(--secondary-color);
+    color: var(--secondary-color-alt);
+    outline-color: var(--secondary-color-alt);
+  }
+
+  .router-link-active .genre__selection__link {
+    background-color: var(--primary-color);
+    color: var(--primary-color-alt);
   }
 </style>

@@ -4,12 +4,14 @@
 
   import CategorySelection from "@/components/CategorySelection.vue";
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id: categoryId } = defineProps<{
     id: number;
   }>();
 
   const bookCategories = inject("bookCategories") as Map<number, BookItem[]>;
-  const booksToDisplay = bookCategories.get(categoryId);
+  // TODO: replace with categoryId later:
+  const booksToDisplay = bookCategories.get(1001);
 </script>
 
 <template>
