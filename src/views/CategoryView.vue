@@ -1,14 +1,35 @@
 <script setup lang="ts">
+  import GenreList from "@/components/GenreList.vue";
   import CategorySelectionList from "@/components/CategorySelectionList.vue";
+  
+  import BaseCard from "@/components/BaseCard.vue";
 </script>
 
 <template>
-  <main class="container flex">
-    <section>
-      <!-- replace with the same component as the dropdown? -->
-    </section>
+  <div class="container flex gap--md">
+    <BaseCard class="genre__selection">
+      <GenreList class="gap--lg">
+        <template #link="{ categoryName }">
+          <div class="genre__selection__link">{{ categoryName }}</div>
+        </template>
+      </GenreList>
+    </BaseCard>
     <CategorySelectionList :id="Number($route.params.id)" />
-  </main>
+  </div>
 </template>
 
-<style></style>
+<style scoped>
+  .genre__selection {
+    height: min-content;
+    min-width: 280px;
+  }
+
+  .genre__selection__link {
+    padding: 0.3em 0.4em;
+
+    color: var(--text-color-mute);
+
+    outline: var(--default-outline);
+    border-radius: var(--default-border-radius);
+  }
+</style>

@@ -9,9 +9,9 @@
 </script>
 
 <template>
-  <ul v-for="(group, i) in categoryGroups" v-bind:key="`genre-list-${i}`">
+  <ul v-for="(group, i) in categoryGroups" v-bind:key="`genre-list-${i}`" class="flex flex--column gap--xs">
     <li class="genre__item__header flex align--center gap--sm">
-      <h3>{{ group.name }}</h3>
+      <h3 class="title">{{ group.name }}</h3>
       <div class="divider"></div>
       <component :is="group.icon" width="20" height="20" />
     </li>
@@ -28,9 +28,7 @@
 </template>
 
 <style scoped>
-  .genre__item__header h1,
-  .genre__item__header h2,
-  .genre__item__header h3 {
+  .genre__item__header .title {
     font-size: 1em;
     text-transform: uppercase;
   }

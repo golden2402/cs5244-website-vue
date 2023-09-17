@@ -4,12 +4,10 @@
 </script>
 
 <template>
-  <BaseCard class="genre__dropdown">
+  <BaseCard class="genre__dropdown flex flex--column gap--sm">
     <GenreList>
       <template #link="{ categoryName }">
-        <li>
-          <p class="genre__link">{{ categoryName }}</p>
-        </li>
+        <p class="genre__link">{{ categoryName }}</p>
       </template>
     </GenreList>
   </BaseCard>
@@ -22,6 +20,8 @@
 
   .genre__link {
     padding-left: 1.2em;
+
+    line-height: 1.1;
 
     transition-property: padding-left;
     transition-duration: 200ms;
