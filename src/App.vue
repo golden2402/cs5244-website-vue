@@ -9,6 +9,8 @@
   import HoverDropdown from "./components/BaseHoverDropdown.vue";
   import BaseCard from "./components/BaseCard.vue";
 
+  import GenreListDropdown from "./components/GenreListDropdown.vue";
+
   import FooterLinkSection from "@/components/FooterLinkSection.vue";
   import FooterLink from "./components/FooterLink.vue";
   import SocialMediaLink from "@/components/SocialMediaLink.vue";
@@ -128,9 +130,7 @@
             </div>
           </template>
           <template #dropdown>
-            <BaseCard style="width: 240px">
-              <p>Genres</p>
-            </BaseCard>
+            <GenreListDropdown />
           </template>
         </HoverDropdown>
         <Divider />

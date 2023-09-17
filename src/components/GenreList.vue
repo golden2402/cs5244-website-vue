@@ -1,0 +1,44 @@
+<script setup lang="ts">
+  import { inject } from "vue";
+  import type { CategoryGroup } from "@/types";
+
+  import { RouterLink } from "vue-router";
+
+  const categoryList = inject("categoryList") as Map<number, string>;
+  const categoryGroups = inject("categoryGroups") as readonly CategoryGroup[];
+</script>
+
+<template>
+  <ul v-for="(group, i) in categoryGroups" v-bind:key="`genre-list-${i}`">
+    <li class="genre__item__header flex align--center gap--sm">
+      <h3>{{ group.name }}</h3>
+      <div class="divider"></div>
+      <img :src="group.icon" />
+    </li>
+    <li
+      class="genre__item"
+      v-for="categoryId in group.categoryIds"
+      v-bind:key="`selection-${categoryId}`"
+    >
+      <RouterLink :to="`/category/${categoryId}`">
+        <slot name="link" :categoryName="categoryList.get(categoryId)"></slot>
+      </RouterLink>
+    </li>
+  </ul>
+</template>
+
+<style scoped>
+  .genre__item__header h1,
+  .genre__item__header h2,
+  .genre__item__header h3 {
+    font-size: 1em;
+    text-transform: uppercase;
+  }
+
+  .divider {
+    flex-grow: 1;
+    height: 1px;
+
+    background-color: black;
+  }
+</style>
