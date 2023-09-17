@@ -13,7 +13,7 @@
     <li class="genre__item__header flex align--center gap--sm">
       <h3>{{ group.name }}</h3>
       <div class="divider"></div>
-      <img :src="group.icon" />
+      <component :is="group.icon" width="20" height="20" />
     </li>
     <li
       class="genre__item"

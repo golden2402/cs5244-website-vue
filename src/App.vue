@@ -11,6 +11,11 @@
 
   import GenreListDropdown from "./components/GenreListDropdown.vue";
 
+  import IconBeaker02 from "./assets/icons/genres/IconBeaker02.vue";
+  import IconBriefcase01 from "./assets/icons/genres/IconBriefcase01.vue";
+  import IconCodeSnippet02 from "./assets/icons/genres/IconCodeSnippet02.vue";
+  import IconGamingPad02 from "./assets/icons/genres/IconGamingPad02.vue";
+
   import FooterLinkSection from "@/components/FooterLinkSection.vue";
   import FooterLink from "./components/FooterLink.vue";
   import SocialMediaLink from "@/components/SocialMediaLink.vue";
@@ -47,22 +52,22 @@
   const categoryGroups: readonly CategoryGroup[] = [
     {
       name: "Programming",
-      icon: "@/assets/logo.svg",
+      icon: IconCodeSnippet02,
       categoryIds: [1001, 1002, 1003]
     },
     {
       name: "Career",
-      icon: "@/assets/logo.svg",
+      icon: IconBriefcase01,
       categoryIds: [2001, 2002]
     },
     {
       name: "Education",
-      icon: "@/assets/logo.svg",
+      icon: IconBeaker02,
       categoryIds: [3001, 3002, 3003, 3004]
     },
     {
       name: "Entertainment",
-      icon: "@/assets/logo.svg",
+      icon: IconGamingPad02,
       categoryIds: [4001, 4002]
     }
   ];
