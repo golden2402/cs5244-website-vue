@@ -6,6 +6,9 @@
 
   import Divider from "./components/BaseDivider.vue";
 
+  import HoverDropdown from "./components/BaseHoverDropdown.vue";
+  import BaseCard from "./components/BaseCard.vue";
+
   import FooterLinkSection from "@/components/FooterLinkSection.vue";
   import FooterLink from "./components/FooterLink.vue";
   import SocialMediaLink from "@/components/SocialMediaLink.vue";
@@ -116,21 +119,44 @@
           <input placeholder="Search" />
           <IconSearch />
         </div>
-        <div class="box--primary flex align--center gap--sm">
-          <IconFolder />
-          Genres
-          <IconChevronDown />
-        </div>
+        <HoverDropdown>
+          <template #content>
+            <div class="box--primary flex align--center gap--sm">
+              <IconFolder />
+              Genres
+              <IconChevronDown />
+            </div>
+          </template>
+          <template #dropdown>
+            <BaseCard style="width: 240px">
+              <p>Genres</p>
+            </BaseCard>
+          </template>
+        </HoverDropdown>
         <Divider />
         <div class="box--primary flex align--center gap--sm">
           <IconShoppingCart02 />
           Cart
         </div>
-        <div class="box--primary flex align--center gap--sm account">
-          <IconUser />
-          Account
-          <IconChevronDown />
-        </div>
+        <HoverDropdown>
+          <template #content>
+            <div class="box--primary flex align--center gap--sm account">
+              <IconUser />
+              Account
+              <IconChevronDown />
+            </div>
+          </template>
+          <template #dropdown>
+            <BaseCard class="flex flex--column gap--xs">
+              <ul>
+                <li><p>My Account</p></li>
+                <li><p>Bookmarks</p></li>
+                <Divider horizontal />
+                <li><p>Log Out</p></li>
+              </ul>
+            </BaseCard>
+          </template>
+        </HoverDropdown>
       </nav>
     </header>
 

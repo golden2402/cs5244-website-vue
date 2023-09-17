@@ -7,7 +7,9 @@
   import IconStar06 from "@/assets/icons/IconStar06.vue";
 
   const bookList = inject("bookList") as Map<number, BookItem>;
-  const featuredBooks = [1001, 1001, 1001, 1001, 1001, 1001].map((id) => bookList.get(id)).filter(Boolean);
+  const featuredBooks = [1001, 1001, 1001, 1001, 1001, 1001]
+    .map((id) => bookList.get(id))
+    .filter(Boolean);
 </script>
 
 <template>
