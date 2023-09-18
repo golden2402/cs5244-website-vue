@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import BaseCard from "./BaseCard.vue";
-  import GenreList from "./GenreList.vue";
+  import BaseCard from "@/components/BaseCard.vue";
+  import GenreList from "@/components/GenreList.vue";
 </script>
 
 <template>

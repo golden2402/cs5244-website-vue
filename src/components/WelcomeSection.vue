@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { RouterLink } from "vue-router";
-  import QuickstartCard from "./QuickstartCard.vue";
+  import QuickstartCard from "@/components/QuickstartCard.vue";
 
   import IconFolder from "@/assets/icons/IconFolder.vue";
   import IconSearch from "@/assets/icons/IconSearch02.vue";

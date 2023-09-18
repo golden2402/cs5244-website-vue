@@ -1,34 +1,16 @@
 <script setup lang="ts">
-  import { RouterLink, RouterView } from "vue-router";
+  import { RouterView } from "vue-router";
 
   import { provide } from "vue";
   import { type BookItem, type CategoryGroup } from "@/types";
 
-  import Divider from "./components/BaseDivider.vue";
+  import PageHeader from "@/components/PageHeader.vue";
+  import PageFooter from "@/components/PageFooter.vue";
 
-  import HoverDropdown from "./components/BaseHoverDropdown.vue";
-  import BaseCard from "./components/BaseCard.vue";
-
-  import GenreListDropdown from "./components/GenreListDropdown.vue";
-
-  import IconBeaker02 from "./assets/icons/genres/IconBeaker02.vue";
-  import IconBriefcase01 from "./assets/icons/genres/IconBriefcase01.vue";
-  import IconCodeSnippet02 from "./assets/icons/genres/IconCodeSnippet02.vue";
-  import IconGamingPad02 from "./assets/icons/genres/IconGamingPad02.vue";
-
-  import FooterLinkSection from "@/components/FooterLinkSection.vue";
-  import FooterLink from "./components/FooterLink.vue";
-  import SocialMediaLink from "@/components/SocialMediaLink.vue";
-
-  import IconChevronDown from "./assets/icons/IconChevronDown.vue";
-  import IconFolder from "./assets/icons/IconFolder.vue";
-  import IconShoppingCart02 from "@/assets/icons/IconShoppingCart02.vue";
-  import IconSearch from "./assets/icons/IconSearch.vue";
-  import IconUser from "./assets/icons/IconUser.vue";
-
-  import IconFacebook from "@/assets/icons/socials/IconFacebook.vue";
-  import IconInstagram from "@/assets/icons/socials/IconInstagram.vue";
-  import IconX from "@/assets/icons/socials/IconX.vue";
+  import IconBeaker02 from "@/assets/icons/genres/IconBeaker02.vue";
+  import IconBriefcase01 from "@/assets/icons/genres/IconBriefcase01.vue";
+  import IconCodeSnippet02 from "@/assets/icons/genres/IconCodeSnippet02.vue";
+  import IconGamingPad02 from "@/assets/icons/genres/IconGamingPad02.vue";
 
   // map category id to name:
   const categoryList = new Map<number, string>()
@@ -80,19 +62,37 @@
       cover: () =>
         "https://www0.alibris-static.com/c-programming-language/isbn/9780131103627_l.jpg",
       title: "C Programming Language",
-      price: 19.99,
+      price: 12.99,
       authors: ["Dennis Ritchie", "Brian Kernighan"],
       categories: [1001],
       isPublic: true
     })
     .set(1002, {
       cover: () =>
+        "https://www3.alibris-static.com/algorithms-to-live-by-the-computer-science-of-human-decisions/isbn/9781250118363_l.jpg",
+      title: "Algorithms to Live By: The Computer Science of Human Decisions",
+      price: 19.99,
+      authors: ["Brian Christian", "Tom Griffiths"],
+      categories: [1001],
+      isPublic: false
+    })
+    .set(1003, {
+      cover: () =>
         "https://www2.alibris-static.com/the-go-programming-language/isbn/9780134190440_l.jpg",
       title: "The Go Programming Language",
-      price: 12.99,
+      price: 19.99,
       authors: ["Alan Donovan", "Brian Kernighan"],
       categories: [1001],
       isPublic: false
+    })
+    .set(1004, {
+      cover: () =>
+        "https://www2.alibris-static.com/c-programming-a-modern-approach/isbn/9780393979503_l.jpg",
+      title: "C Programming: A Modern Approach",
+      price: 12.99,
+      authors: ["Dennis Ritchie", "Brian Kernighan"],
+      categories: [1001],
+      isPublic: true
     });
 
   const bookCategories = new Map<number, BookItem[]>();
@@ -115,89 +115,18 @@
 
 <template>
   <div class="page flex flex--column">
-    <header class="flex justify--between align--center">
-      <RouterLink to="/" class="title flex align--center gap--sm">
-        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
-        <h2>Bookmart</h2>
-      </RouterLink>
-
-      <nav class="flex align--stretch gap--sm">
-        <div class="box--secondary flex align--center">
-          <input placeholder="Search" />
-          <IconSearch />
-        </div>
-        <HoverDropdown>
-          <template #content>
-            <div class="box--primary flex align--center gap--sm">
-              <IconFolder />
-              Genres
-              <IconChevronDown />
-            </div>
-          </template>
-          <template #dropdown>
-            <GenreListDropdown />
-          </template>
-        </HoverDropdown>
-        <Divider />
-        <div class="box--primary flex align--center gap--sm">
-          <IconShoppingCart02 />
-          Cart
-        </div>
-        <HoverDropdown>
-          <template #content>
-            <div class="box--primary flex align--center gap--sm account">
-              <IconUser />
-              Account
-              <IconChevronDown />
-            </div>
-          </template>
-          <template #dropdown>
-            <BaseCard class="flex flex--column gap--xs">
-              <ul>
-                <li><p>My Account</p></li>
-                <li><p>Bookmarks</p></li>
-                <Divider horizontal />
-                <li><p>Log Out</p></li>
-              </ul>
-            </BaseCard>
-          </template>
-        </HoverDropdown>
-      </nav>
-    </header>
+    <PageHeader />
 
     <main class="page__body flex">
       <RouterView />
     </main>
 
-    <footer class="flex justify--between align--center">
-      <p class="copyright">&copy; John Golden 2023</p>
-      <div class="footer__links flex align--stretch gap--md">
-        <FooterLinkSection title="Socials">
-          <div class="flex gap--md">
-            <SocialMediaLink href="/">
-              <IconInstagram />
-            </SocialMediaLink>
-            <SocialMediaLink href="/">
-              <IconX />
-            </SocialMediaLink>
-            <SocialMediaLink href="/">
-              <IconFacebook />
-            </SocialMediaLink>
-          </div>
-        </FooterLinkSection>
-        <Divider />
-        <FooterLinkSection title="Links">
-          <div class="flex">
-            <FooterLink name="Directions" href="/directions" />
-            <FooterLink name="Contact" href="/contact" />
-          </div>
-        </FooterLinkSection>
-      </div>
-    </footer>
+    <PageFooter />
   </div>
 </template>
 
 <style scoped>
+  /* FIXME: disjoint from components--maybe move? */
   header,
   footer {
     padding: 1em;
@@ -205,23 +134,6 @@
     background-color: var(--foreground-color);
     outline: var(--default-outline);
     box-shadow: var(--default-box-shadow);
-  }
-
-  /* header */
-  header .title {
-    height: 100%;
-  }
-
-  .account {
-    background-color: var(--success-color);
-  }
-
-  footer .copyright {
-    color: var(--text-color-mute);
-  }
-
-  footer .footer__links {
-    font-size: 0.9em;
   }
 
   /* page utility */

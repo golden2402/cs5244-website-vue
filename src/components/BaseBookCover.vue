@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import BaseCard from "./BaseCard.vue";
+  import BaseCard from "@/components/BaseCard.vue";
 
   defineProps<{
     src: string;
