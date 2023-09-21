@@ -72,6 +72,11 @@
 </template>
 
 <style scoped>
+  header {
+    position: sticky;
+    top: 0;
+  }
+
   .account {
     background-color: var(--success-color);
   }
