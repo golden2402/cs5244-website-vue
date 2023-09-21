@@ -67,7 +67,8 @@
       isPublic: true
     })
     .set(1002, {
-      cover: "https://www3.alibris-static.com/algorithms-to-live-by-the-computer-science-of-human-decisions/isbn/9781250118363_l.jpg",
+      cover:
+        "https://www3.alibris-static.com/algorithms-to-live-by-the-computer-science-of-human-decisions/isbn/9781250118363_l.jpg",
       title: "Algorithms to Live By: The Computer Science of Human Decisions",
       price: 19.99,
       authors: ["Brian Christian", "Tom Griffiths"],
@@ -83,10 +84,36 @@
       isPublic: false
     })
     .set(1004, {
-      cover: "https://www2.alibris-static.com/c-programming-a-modern-approach/isbn/9780393979503_l.jpg",
+      cover:
+        "https://www2.alibris-static.com/c-programming-a-modern-approach/isbn/9780393979503_l.jpg",
       title: "C Programming: A Modern Approach",
       price: 12.99,
-      authors: ["Dennis Ritchie", "Brian Kernighan"],
+      authors: ["K N King"],
+      categories: [1001],
+      isPublic: true
+    })
+    .set(1005, {
+      cover: "https://www4.alibris-static.com/java-programming/isbn/9780357673423_l.jpg",
+      title: "Java Programming",
+      price: 12.99,
+      authors: ["Joyce Farrell"],
+      categories: [1001],
+      isPublic: true
+    })
+    .set(1006, {
+      cover:
+        "https://www4.alibris-static.com/the-unix-programming-environment/isbn/9780139376818_l.jpg",
+      title: "The Unix Programming Environment",
+      price: 12.99,
+      authors: ["Brian Kernighan"],
+      categories: [1001],
+      isPublic: true
+    })
+    .set(1007, {
+      cover: "https://www3.alibris-static.com/python-programming-language/isbn/9781423241881_l.jpg",
+      title: "Python Programming Language",
+      price: 12.99,
+      authors: ["Berajah Jayne"],
       categories: [1001],
       isPublic: true
     });

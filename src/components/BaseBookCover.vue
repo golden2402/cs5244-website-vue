@@ -15,6 +15,7 @@
 <style scoped>
   .cover__seat {
     padding: 0.2em;
+    height: min-content;
     max-width: 150px;
   }
 </style>
