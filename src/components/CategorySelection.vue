@@ -17,7 +17,7 @@
   <!-- sort of like sinking the error; maybe bad practice: -->
   <BaseCard class="category__item">
     <div class="flex gap--sm">
-      <BaseBookCover class="book__cover" :src="book.cover()" />
+      <BaseBookCover class="book__cover" :src="book.cover" />
       <div class="category__item__details flex flex--column justify--between">
         <section class="book__header">
           <h3>{{ book.title }}</h3>

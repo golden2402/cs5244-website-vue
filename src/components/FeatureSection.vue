@@ -22,7 +22,7 @@
       <p class="featured__blurb">Your next best book could be right here.</p>
     </div>
     <div v-if="featuredBooks.length > 0" class="flex flex--wrap justify--center gap--sm">
-      <BookCover v-for="(item, id) of featuredBooks" v-bind:key="id" :src="item!.cover()" />
+      <BookCover v-for="(item, id) of featuredBooks" v-bind:key="id" :src="item!.cover" />
     </div>
   </div>
 </template>

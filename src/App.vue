@@ -59,8 +59,7 @@
 
   const bookList = new Map<number, BookItem>()
     .set(1001, {
-      cover: () =>
-        "https://www0.alibris-static.com/c-programming-language/isbn/9780131103627_l.jpg",
+      cover: "https://www0.alibris-static.com/c-programming-language/isbn/9780131103627_l.jpg",
       title: "C Programming Language",
       price: 12.99,
       authors: ["Dennis Ritchie", "Brian Kernighan"],
@@ -68,8 +67,7 @@
       isPublic: true
     })
     .set(1002, {
-      cover: () =>
-        "https://www3.alibris-static.com/algorithms-to-live-by-the-computer-science-of-human-decisions/isbn/9781250118363_l.jpg",
+      cover: "https://www3.alibris-static.com/algorithms-to-live-by-the-computer-science-of-human-decisions/isbn/9781250118363_l.jpg",
       title: "Algorithms to Live By: The Computer Science of Human Decisions",
       price: 19.99,
       authors: ["Brian Christian", "Tom Griffiths"],
@@ -77,8 +75,7 @@
       isPublic: false
     })
     .set(1003, {
-      cover: () =>
-        "https://www2.alibris-static.com/the-go-programming-language/isbn/9780134190440_l.jpg",
+      cover: "https://www2.alibris-static.com/the-go-programming-language/isbn/9780134190440_l.jpg",
       title: "The Go Programming Language",
       price: 19.99,
       authors: ["Alan Donovan", "Brian Kernighan"],
@@ -86,8 +83,7 @@
       isPublic: false
     })
     .set(1004, {
-      cover: () =>
-        "https://www2.alibris-static.com/c-programming-a-modern-approach/isbn/9780393979503_l.jpg",
+      cover: "https://www2.alibris-static.com/c-programming-a-modern-approach/isbn/9780393979503_l.jpg",
       title: "C Programming: A Modern Approach",
       price: 12.99,
       authors: ["Dennis Ritchie", "Brian Kernighan"],

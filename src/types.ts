@@ -1,7 +1,7 @@
 import { type Component, type DefineComponent } from "vue";
 
 export interface BookItem {
-  cover: () => string;
+  cover: string;
   title: string;
   price: number;
   authors: string[];
@@ -12,5 +12,5 @@ export interface BookItem {
 export interface CategoryGroup {
   name: string;
   icon: Component | DefineComponent;
-  categoryIds: readonly number[];
+  categoryIds: number[];
 }
