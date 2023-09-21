@@ -46,23 +46,23 @@
         <template #content>
           <div class="box--primary flex align--center gap--sm account">
             <IconUser />
-            Account
+            YourUsernameHere
             <IconChevronDown />
           </div>
         </template>
         <template #dropdown>
           <BaseCard class="flex flex--column gap--xs">
             <ul>
-              <li>
-                <p>My Account</p>
-              </li>
-              <li>
-                <p>Bookmarks</p>
-              </li>
-              <Divider horizontal />
-              <li>
-                <p>Log Out</p>
-              </li>
+              <RouterLink to="">
+              <li><p>My Account</p></li>
+              </RouterLink>
+              <RouterLink to="">
+                <li><p>Bookmarks</p></li>
+              </RouterLink>
+              <Divider horizontal class="account__divider" />
+              <RouterLink to="">
+                <li><p class="account__logout">Log Out</p></li>
+              </RouterLink>
             </ul>
           </BaseCard>
         </template>
@@ -74,5 +74,13 @@
 <style scoped>
   .account {
     background-color: var(--success-color);
+  }
+
+  .account__divider {
+    margin: 0.4em 0;
+  }
+
+  .account__logout {
+    color: var(--danger-color);
   }
 </style>
