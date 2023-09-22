@@ -15,9 +15,9 @@
 
 <template>
   <header class="flex justify--between align--center">
-    <RouterLink to="/" class="title flex align--center gap--sm">
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
-      <h2>Bookmart</h2>
+    <RouterLink to="/" class="title flex align--center gap--md">
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="48" height="48" />
+      <h1>Bookmart</h1>
     </RouterLink>
 
     <nav class="flex align--stretch gap--sm">
@@ -80,6 +80,12 @@
   header {
     position: sticky;
     top: 0;
+  }
+
+  .title h1,
+  .title h2,
+  .title h3 {
+    line-height: 1;
   }
 
   .cart__seat {
