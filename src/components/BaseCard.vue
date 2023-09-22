@@ -34,7 +34,7 @@
     text-transform: uppercase;
   }
 
-  .card.card--hover:hover {
+  .card[hoverable]:hover {
     box-shadow: var(--default-box-shadow-heavy);
   }
 </style>

@@ -22,7 +22,9 @@
       <p class="featured__blurb">Your next best book could be right here.</p>
     </div>
     <div v-if="featuredBooks.length > 0" class="flex flex--wrap justify--center gap--sm">
-      <BookCover v-for="(item, id) of featuredBooks" v-bind:key="id" :src="item!.cover" />
+      <RouterLink v-for="(item, id) of featuredBooks" v-bind:key="id" to="/category">
+        <BookCover hoverable :src="item!.cover" />
+      </RouterLink>
     </div>
   </div>
 </template>
