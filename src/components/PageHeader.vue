@@ -38,10 +38,15 @@
         </template>
       </HoverDropdown>
       <Divider />
-      <div class="box--primary flex align--center gap--sm">
-        <IconShoppingCart02 />
-        Cart
-      </div>
+      <RouterLink to="">
+        <div class="cart__seat">
+          <div class="box--primary flex align--center gap--sm">
+            <IconShoppingCart02 />
+            Cart
+          </div>
+          <p class="cart__count">10</p>
+        </div>
+      </RouterLink>
       <HoverDropdown>
         <template #content>
           <div class="box--primary flex align--center gap--sm account">
@@ -54,7 +59,7 @@
           <BaseCard class="flex flex--column gap--xs">
             <ul>
               <RouterLink to="">
-              <li><p>My Account</p></li>
+                <li><p>My Account</p></li>
               </RouterLink>
               <RouterLink to="">
                 <li><p>Bookmarks</p></li>
@@ -75,6 +80,27 @@
   header {
     position: sticky;
     top: 0;
+  }
+
+  .cart__seat {
+    position: relative;
+  }
+
+  .cart__count {
+    z-index: 10;
+    position: absolute;
+    top: -0.75rem;
+    right: -0.25rem;
+
+    padding: 0rem 0.3rem;
+
+    color: var(--primary-color-alt);
+    background-color: var(--danger-color);
+
+    box-shadow: var(--default-box-shadow);
+
+    border-radius: var(--default-border-radius);
+    outline: var(--default-outline);
   }
 
   .account {
