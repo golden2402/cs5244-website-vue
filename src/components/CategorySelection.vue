@@ -28,7 +28,7 @@
           <div class="book__cost flex justify--center align--center">
             <p>${{ book.price }}</p>
           </div>
-          <RouterLink to="/">
+          <RouterLink to="">
             <div class="flex gap--sm align--center box--primary">
               <IconShoppingCart02 />
               <p>Add to Cart</p>

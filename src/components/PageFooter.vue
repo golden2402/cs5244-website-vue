@@ -28,8 +28,8 @@
       <Divider />
       <FooterLinkSection title="Links">
         <div class="flex">
-          <FooterLink name="Directions" href="/directions" />
-          <FooterLink name="Contact" href="/contact" />
+          <FooterLink name="Directions" href="/" />
+          <FooterLink name="Contact" href="/" />
         </div>
       </FooterLinkSection>
     </div>
