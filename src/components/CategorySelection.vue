@@ -53,6 +53,7 @@
   .book__header h1,
   .book__header h2,
   .book__header h3 {
+    line-height: 1.2;
     text-transform: uppercase;
   }
 
