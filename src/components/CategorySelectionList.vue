@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  import { inject } from "vue";
-  import type { BookItem } from "@/types";
+  import type { BookItemResource } from "@/types";
 
   import CategorySelection from "@/components/CategorySelection.vue";
 
@@ -9,15 +8,16 @@
     id: number;
   }>();
 
-  const bookCategories = inject("bookCategories") as Map<number, BookItem[]>;
-  // TODO: replace with categoryId later:
-  const booksToDisplay = bookCategories.get(1001);
+  const bookSetResponse = await fetch(
+    `http://localhost:8080/JohnGBookstoreFetch/api/categories/${categoryId}/books/`
+  );
+  const bookSetData = (await bookSetResponse.json()) as BookItemResource[];
 </script>
 
 <template>
   <section class="book__selection__grid">
     <CategorySelection
-      v-for="(book, i) of booksToDisplay"
+      v-for="(book, i) of bookSetData"
       v-bind:key="`selection-${i}`"
       :book="book"
     />

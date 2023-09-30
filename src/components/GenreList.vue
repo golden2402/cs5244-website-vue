@@ -6,10 +6,17 @@
 
   const categoryList = inject("categoryList") as Map<number, string>;
   const categoryGroups = inject("categoryGroups") as readonly CategoryGroup[];
+
+  // TODO: need a way to categorize by "other" (categories that exist in
+  // categoryList but not categoryGroups)
 </script>
 
 <template>
-  <ul v-for="(group, i) in categoryGroups" v-bind:key="`genre-list-${i}`" class="flex flex--column gap--xs">
+  <ul
+    v-for="(group, i) in categoryGroups"
+    v-bind:key="`genre-list-${i}`"
+    class="flex flex--column gap--xs"
+  >
     <li class="genre__item__header flex align--center gap--sm">
       <h3 class="title">{{ group.name }}</h3>
       <div class="divider"></div>

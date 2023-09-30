@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import Divider from "./BaseDivider.vue";
+
   import FooterLinkSection from "@/components/FooterLinkSection.vue";
   import FooterLink from "@/components/FooterLink.vue";
   import SocialMediaLink from "@/components/SocialMediaLink.vue";

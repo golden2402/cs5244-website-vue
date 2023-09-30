@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { RouterLink } from "vue-router";
 
-  import type { BookItem } from "@/types";
+  import type { BookItemResource } from "@/types";
 
   import BaseBookCover from "@/components/BaseBookCover.vue";
   import BaseCard from "@/components/BaseCard.vue";
@@ -10,7 +10,7 @@
   import IconShoppingCart02 from "@/assets/icons/IconShoppingCart02.vue";
 
   defineProps<{
-    book: BookItem;
+    book: BookItemResource;
   }>();
 </script>
 
@@ -19,7 +19,7 @@
   <BaseCard class="category__item">
     <div class="flex gap--sm">
       <div class="book__cover__seat">
-        <BaseBookCover class="book__cover" :src="book.cover" />
+        <BaseBookCover class="book__cover" :src="`/covers/${book.bookId}.png`" />
         <RouterLink to="" v-if="book.isPublic">
           <div class="read__now__button box--secondary">
             <IconBookOpen01 />
@@ -29,12 +29,12 @@
       <div class="category__item__details flex flex--column justify--between">
         <section class="book__header">
           <h3>{{ book.title }}</h3>
-          <p>by {{ book.authors.join(", ") }}</p>
+          <p>by {{ book.author }}</p>
         </section>
 
         <section class="flex gap--sm">
           <div class="book__cost flex justify--center align--center">
-            <p>${{ book.price }}</p>
+            <p>${{ (book.price / 100).toFixed(2) }}</p>
           </div>
           <RouterLink to="">
             <div class="flex gap--sm align--center box--primary">
@@ -64,7 +64,7 @@
 
   .read__now__button {
     display: inline-flex;
-    
+
     position: absolute;
     bottom: 0.4em;
     left: 0.4em;

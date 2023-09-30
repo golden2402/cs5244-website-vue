@@ -1,8 +1,12 @@
 <script setup lang="ts">
+  import { useRoute } from "vue-router";
+
   import GenreList from "@/components/GenreList.vue";
   import CategorySelectionList from "@/components/CategorySelectionList.vue";
 
   import BaseCard from "@/components/BaseCard.vue";
+
+  const route = useRoute();
 </script>
 
 <template>
@@ -14,7 +18,7 @@
         </template>
       </GenreList>
     </BaseCard>
-    <CategorySelectionList :id="Number($route.params.id)" />
+    <CategorySelectionList :id="Number(route.params.id)" :key="`${route.params.id}`" />
   </div>
 </template>
 

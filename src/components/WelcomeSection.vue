@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { inject } from "vue";
+
   import { RouterLink } from "vue-router";
   import QuickstartCard from "@/components/QuickstartCard.vue";
 
@@ -6,6 +8,9 @@
   import IconSearch from "@/assets/icons/IconSearch02.vue";
 
   import IconArrow from "@/assets/icons/IconArrow.vue";
+
+  // inject to find the first category for the CTA:
+  const categoryList = inject("categoryList") as Map<number, string>;
 </script>
 
 <template>
@@ -37,7 +42,7 @@
         </QuickstartCard>
       </div>
 
-      <RouterLink to="/category">
+      <RouterLink :to="`/category/${Array.from(categoryList.keys())[0]}`">
         <div class="cta box--primary flex justify--between align--center">
           <h1 class="cta__title">Start Shopping</h1>
           <IconArrow class="arrow" width="36" height="36" />
