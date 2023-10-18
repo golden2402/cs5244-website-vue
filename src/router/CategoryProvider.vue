@@ -2,13 +2,15 @@
   import { provide } from "vue";
   import { type CategoryGroup, type CategoryItemResource } from "@/types";
 
+  import { apiUrl } from "@/api";
+
   import IconBeaker02 from "@/assets/icons/genres/IconBeaker02.vue";
   import IconBriefcase01 from "@/assets/icons/genres/IconBriefcase01.vue";
   import IconCodeSnippet02 from "@/assets/icons/genres/IconCodeSnippet02.vue";
   import IconGamingPad02 from "@/assets/icons/genres/IconGamingPad02.vue";
 
   const categoryListResponse = await fetch(
-    "http://localhost:8080/JohnGBookstoreFetch/api/categories/"
+    `${apiUrl}/api/categories/`
   );
   const categoryListData = (await categoryListResponse.json()) as CategoryItemResource[];
 

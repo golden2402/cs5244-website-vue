@@ -2,6 +2,8 @@
   import { inject } from "vue";
   import type { BookItemResource } from "@/types";
 
+  import { apiUrl } from "@/api";
+
   import BookCover from "@/components/BaseBookCover.vue";
   import IconStar06 from "@/assets/icons/IconStar06.vue";
 
@@ -14,7 +16,7 @@
   const selectedCategory = categoryListIds[Math.floor(Math.random() * categoryListIds.length)];
 
   const featuredBooksResponse = await fetch(
-    `http://localhost:8080/JohnGBookstoreFetch/api/categories/${selectedCategory}/suggested-books?limit=6`
+    `${apiUrl}/categories/${selectedCategory}/suggested-books?limit=6`
   );
   const featuredBooks = (await featuredBooksResponse.json()) as BookItemResource[];
 </script>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import type { BookItemResource } from "@/types";
+  
+  import { apiUrl } from "@/api";
 
   import CategorySelection from "@/components/CategorySelection.vue";
 
@@ -9,7 +11,7 @@
   }>();
 
   const bookSetResponse = await fetch(
-    `http://localhost:8080/JohnGBookstoreFetch/api/categories/${categoryId}/books/`
+    `${apiUrl}/categories/${categoryId}/books/`
   );
   const bookSetData = (await bookSetResponse.json()) as BookItemResource[];
 </script>
