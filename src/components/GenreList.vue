@@ -1,10 +1,12 @@
 <script setup lang="ts">
   import { inject } from "vue";
+  import { useCategoryStore } from "@/stores/category";
+
   import type { CategoryGroup } from "@/types";
 
   import { RouterLink } from "vue-router";
 
-  const categoryList = inject("categoryList") as Map<number, string>;
+  const categoryList = useCategoryStore().categoryList;
   const categoryGroups = inject("categoryGroups") as readonly CategoryGroup[];
 
   // TODO: need a way to categorize by "other" (categories that exist in

@@ -1,25 +1,15 @@
 <script setup lang="ts">
   import { provide } from "vue";
-  import { type CategoryGroup, type CategoryItemResource } from "@/types";
-
-  import { apiUrl } from "@/api";
+  import { type CategoryGroup } from "@/types";
 
   import IconBeaker02 from "@/assets/icons/genres/IconBeaker02.vue";
   import IconBriefcase01 from "@/assets/icons/genres/IconBriefcase01.vue";
   import IconCodeSnippet02 from "@/assets/icons/genres/IconCodeSnippet02.vue";
   import IconGamingPad02 from "@/assets/icons/genres/IconGamingPad02.vue";
 
-  const categoryListResponse = await fetch(
-    `${apiUrl}/api/categories/`
-  );
-  const categoryListData = (await categoryListResponse.json()) as CategoryItemResource[];
+  import { useCategoryStore } from "@/stores/category";
 
-  // map category id to name:
-  const categoryList = new Map<number, string>();
-
-  for (const { categoryId, name } of categoryListData) {
-    categoryList.set(categoryId, name);
-  }
+  useCategoryStore().fetchCategories();
 
   // in-order category grouping for dropdowns--need to hardcode this because we
   // can't modify the database schema:
@@ -46,7 +36,6 @@
     }
   ];
 
-  provide<Map<number, string>>("categoryList", categoryList);
   provide<readonly CategoryGroup[]>("categoryGroups", categoryGroups);
 </script>
 

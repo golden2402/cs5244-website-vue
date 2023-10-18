@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { inject } from "vue";
+  import { useCategoryStore } from "@/stores/category";
+
   import type { BookItemResource } from "@/types";
 
   import { apiUrl } from "@/api";
@@ -7,7 +8,7 @@
   import BookCover from "@/components/BaseBookCover.vue";
   import IconStar06 from "@/assets/icons/IconStar06.vue";
 
-  const categoryList = inject("categoryList") as Map<number, string>;
+  const categoryList = useCategoryStore().categoryList;
 
   // const categoryListIds = Array.from(categoryList.keys());
   // FIXME: currently hardcoded, should be changed to use the set of any

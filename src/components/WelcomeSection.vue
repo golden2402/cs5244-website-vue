@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { inject } from "vue";
+  import { useCategoryStore } from "@/stores/category";
 
   import { RouterLink } from "vue-router";
   import QuickstartCard from "@/components/QuickstartCard.vue";
@@ -9,8 +9,8 @@
 
   import IconArrow from "@/assets/icons/IconArrow.vue";
 
-  // inject to find the first category for the CTA:
-  const categoryList = inject("categoryList") as Map<number, string>;
+  // use our store to find the first category for the CTA:
+  const categoryList = useCategoryStore().categoryList;
 </script>
 
 <template>
