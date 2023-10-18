@@ -1,25 +1,27 @@
 <script setup lang="ts">
-  import type { BookItemResource } from "@/types";
-  
-  import { apiUrl } from "@/api";
+  import { useBookStore } from "@/stores/book";
+
+  import { useRoute } from "vue-router";
+  import { watch } from "vue";
 
   import CategorySelection from "@/components/CategorySelection.vue";
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id: categoryId } = defineProps<{
-    id: number;
-  }>();
+  const route = useRoute();
+  const bookStore = useBookStore();
 
-  const bookSetResponse = await fetch(
-    `${apiUrl}/categories/${categoryId}/books/`
+  watch(
+    () => route.params.id,
+    (newId) => {
+      bookStore.fetchBooks(Number(newId));
+    },
+    { immediate: true }
   );
-  const bookSetData = (await bookSetResponse.json()) as BookItemResource[];
 </script>
 
 <template>
   <section class="book__selection__grid">
     <CategorySelection
-      v-for="(book, i) of bookSetData"
+      v-for="(book, i) of bookStore.bookList"
       v-bind:key="`selection-${i}`"
       :book="book"
     />
