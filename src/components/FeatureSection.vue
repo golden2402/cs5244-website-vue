@@ -20,6 +20,9 @@
     `${apiUrl}/categories/${selectedCategory}/suggested-books?limit=6`
   );
   const featuredBooks = (await featuredBooksResponse.json()) as BookItemResource[];
+
+  // FIXME: boilerplate:
+  const bookImagePrefix = `${import.meta.env.BASE_URL}/covers`;
 </script>
 
 <template>
@@ -42,7 +45,7 @@
         v-bind:key="i"
         :to="`/category/${selectedCategory}`"
       >
-        <BookCover hoverable :src="`/covers/${item.bookId}.png`" />
+        <BookCover hoverable :src="`${bookImagePrefix}/${item.bookId}.png`" />
       </RouterLink>
     </div>
   </div>
