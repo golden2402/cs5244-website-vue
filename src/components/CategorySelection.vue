@@ -1,6 +1,8 @@
 <script setup lang="ts">
   import { RouterLink } from "vue-router";
 
+  import { useCartStore } from "@/stores/cart";
+
   import type { BookItemResource } from "@/types";
 
   import BaseBookCover from "@/components/BaseBookCover.vue";
@@ -12,6 +14,8 @@
   defineProps<{
     book: BookItemResource;
   }>();
+
+  const cartStore = useCartStore();
 </script>
 
 <template>
@@ -36,12 +40,12 @@
           <div class="book__cost flex justify--center align--center">
             <p>${{ (book.price / 100).toFixed(2) }}</p>
           </div>
-          <RouterLink to="">
+          <button @click="cartStore.addToCart(book)">
             <div class="flex gap--sm align--center box--primary">
               <IconShoppingCart02 />
               <p>Add to Cart</p>
             </div>
-          </RouterLink>
+          </button>
         </section>
       </div>
     </div>

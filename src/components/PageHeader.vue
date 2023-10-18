@@ -11,6 +11,10 @@
   import IconShoppingCart02 from "@/assets/icons/IconShoppingCart02.vue";
   import IconSearch from "@/assets/icons/IconSearch.vue";
   import IconUser from "@/assets/icons/IconUser.vue";
+
+  import { useCartStore } from "@/stores/cart";
+
+  const cartStore = useCartStore();
 </script>
 
 <template>
@@ -44,7 +48,7 @@
             <IconShoppingCart02 />
             Cart
           </div>
-          <p class="cart__count">10</p>
+          <p class="cart__count">{{ cartStore.count }}</p>
         </div>
       </RouterLink>
       <HoverDropdown>
