@@ -25,7 +25,7 @@
     <section class="table__contents">
       <div v-for="{ book, quantity } in cart.items" :key="book.bookId" class="cart__item row">
         <div class="flex justify--center">
-          <BaseCard>
+          <BaseCard class="cart__item__cover__seat">
             <img class="cart__item__cover" :src="getBookImage(book.bookId)" />
           </BaseCard>
         </div>
@@ -69,9 +69,12 @@
   .cart__item:nth-child(odd) {
     background-color: var(--secondary-color);
   }
-
+  
+  .cart__item__cover__seat {
+    padding: 0.2em;
+  }
   .cart__item__cover {
-    max-height: 8em;
+    max-height: 10em;
   }
 
   .cart__item__author {
