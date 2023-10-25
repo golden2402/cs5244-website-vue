@@ -1,7 +1,13 @@
 <script setup lang="ts">
-  import type { RouterLink } from "vue-router";
+  import { RouterLink } from "vue-router";
+
+  import { useCartStore } from "@/stores/cart";
+  import { useCategoryStore } from "@/stores/category";
 
   import CartTable from "@/components/CartTable.vue";
+
+  const cartStore = useCartStore();
+  const categoryList = useCategoryStore().categoryList;
 </script>
 
 <template>
@@ -19,12 +25,12 @@
             <h1 class="cta__title">Checkout</h1>
           </div>
         </RouterLink>
-        <RouterLink to="/category">
+        <RouterLink :to="`/category/${Array.from(categoryList.keys())[0]}`">
           <div class="continue__shopping__button box--secondary">
             <p class="title">Continue Shopping</p>
           </div>
         </RouterLink>
-        <button class="clear__cart__button">
+        <button class="clear__cart__button" @click="cartStore.clearCart()">
           <i>Clear Cart</i>
         </button>
       </div>
