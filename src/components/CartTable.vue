@@ -34,7 +34,7 @@
 
 <template>
   <BaseCard class="table__widget">
-    <header class="row">
+    <header class="table__header row">
       <div></div>
       <h3>Title</h3>
       <h3>Quantity</h3>
@@ -42,68 +42,79 @@
       <div></div>
     </header>
 
-    <!-- fill: -->
-    <section class="table__contents">
-      <div
-        v-for="{ book, quantity } in cartStore.cart.items"
-        :key="book.bookId"
-        class="cart__item row"
-      >
-        <div class="flex justify--center">
-          <BaseCard class="cart__item__cover__seat">
-            <img class="cart__item__cover" :src="getBookImage(book.bookId)" />
-          </BaseCard>
+    <div v-if="cartStore.count > 0">
+      <!-- fill: -->
+      <section class="table__contents">
+        <div
+          v-for="{ book, quantity } in cartStore.cart.items"
+          :key="book.bookId"
+          class="cart__item row"
+        >
+          <div class="flex justify--center">
+            <BaseCard class="cart__item__cover__seat">
+              <img class="cart__item__cover" :src="getBookImage(book.bookId)" />
+            </BaseCard>
+          </div>
+          <div class="flex flex--column justify--center">
+            <p class="cart__item__name">{{ book.title }}</p>
+            <p class="cart__item__author">by {{ book.author }}</p>
+          </div>
+          <div class="flex flex--column justify--center">
+            <BaseCard>
+              <input
+                class="cart__item__quantity"
+                type="number"
+                :value="quantity"
+                @input="(e) => handleQuantityChange(e.target as HTMLInputElement, book)"
+              />
+            </BaseCard>
+            <p class="cart__item__quantity__subtext">Max. 99</p>
+          </div>
+          <div class="flex flex--column justify--center">${{ (book.price / 100).toFixed(2) }}</div>
+          <div class="flex flex--column justify--center align--center gap--sm">
+            <button class="remove__item__button" @click="deleteItem(book)">
+              <IconClose class="remove__item__icon" />
+            </button>
+          </div>
         </div>
-        <div class="flex flex--column justify--center">
-          <p class="cart__item__name">{{ book.title }}</p>
-          <p class="cart__item__author">by {{ book.author }}</p>
-        </div>
-        <div class="flex flex--column justify--center">
-          <BaseCard>
-            <input
-              class="cart__item__quantity"
-              type="number"
-              :value="quantity"
-              @input="(e) => handleQuantityChange(e.target as HTMLInputElement, book)"
-            />
-          </BaseCard>
-          <p class="cart__item__quantity__subtext">Max. 99</p>
-        </div>
-        <div class="flex flex--column justify--center">${{ (book.price / 100).toFixed(2) }}</div>
-        <div class="flex flex--column justify--center align--center gap--sm">
-          <button class="remove__item__button" @click="deleteItem(book)">
-            <IconClose class="remove__item__icon" />
-          </button>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- subtotal: -->
-    <section>
-      <div class="row">
-        <!-- empty elements; used to align subtotal with price -->
-        <div></div>
-        <div></div>
-        <h3>Subtotal:</h3>
-        <p>
-          {{
-            asDollarsAndCents(
-              cartStore.cart.items.reduce(
-                (previous, { book: { price }, quantity }) => previous + price * quantity,
-                0
+      <!-- subtotal: -->
+      <section>
+        <div class="row">
+          <!-- empty elements; used to align subtotal with price -->
+          <div></div>
+          <div></div>
+          <h3>Subtotal:</h3>
+          <p>
+            {{
+              asDollarsAndCents(
+                cartStore.cart.items.reduce(
+                  (previous, { book: { price }, quantity }) => previous + price * quantity,
+                  0
+                )
               )
-            )
-          }}
-        </p>
-        <div></div>
-      </div>
-    </section>
+            }}
+          </p>
+          <div></div>
+        </div>
+      </section>
+    </div>
+    <div v-else>
+      <section class="cart__empty">
+        <p>Your cart is empty! :O</p>
+      </section>
+    </div>
   </BaseCard>
 </template>
 
 <style scoped>
   .table__widget {
     width: max-content;
+  }
+
+  .table__header {
+    padding: 0.4em 0;
   }
 
   .table__widget .row {
@@ -149,5 +160,10 @@
 
   .remove__item__icon {
     color: var(--text-color-mute);
+  }
+
+  .cart__empty {
+    padding: 0.2em 0;
+    text-align: center;
   }
 </style>
