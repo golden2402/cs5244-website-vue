@@ -1,6 +1,14 @@
 <script setup lang="ts">
+  import { useCartStore } from "@/stores/cart";
+
+  import type { BookItemResource } from "@/types";
+
+  import getBookImage from "@/util/get-book-image";
+
   import IconClose from "@/assets/icons/IconClose.vue";
   import BaseCard from "./BaseCard.vue";
+
+  const cart = useCartStore().cart;
 </script>
 
 <template>
@@ -15,21 +23,22 @@
 
     <!-- fill: -->
     <section class="table__contents">
-      <div class="cart__item row">
+      <div v-for="{ book, quantity } in cart.items" :key="book.bookId" class="cart__item row">
         <div class="flex justify--center">
           <BaseCard>
-            <img class="cart__item__cover" src="/covers/1001.png" />
+            <img class="cart__item__cover" :src="getBookImage(book.bookId)" />
           </BaseCard>
         </div>
         <div class="flex flex--column justify--center">
-          <p class="cart__item__name">The C Programming Language</p>
+          <p class="cart__item__name">{{ book.title }}</p>
+          <p class="cart__item__author">by {{ book.author }}</p>
         </div>
         <div class="flex flex--column justify--center">
           <BaseCard>
-            <input class="cart__item__quantity" type="number" value="1" />
+            <input class="cart__item__quantity" type="number" :value="quantity" />
           </BaseCard>
         </div>
-        <div class="flex flex--column justify--center">$549</div>
+        <div class="flex flex--column justify--center">${{ (book.price / 100).toFixed(2) }}</div>
         <div class="flex flex--column justify--center align--center gap--sm">
           <button class="remove__item__button">
             <IconClose class="remove__item__icon" />
@@ -63,6 +72,11 @@
 
   .cart__item__cover {
     max-height: 8em;
+  }
+
+  .cart__item__author {
+    color: var(--text-color-mute);
+    font-size: 0.9em;
   }
 
   .cart__item__quantity {
