@@ -44,10 +44,12 @@
       <Divider />
       <RouterLink to="">
         <div class="cart__seat">
-          <div class="box--primary flex align--center gap--sm">
-            <IconShoppingCart02 />
-            Cart
-          </div>
+          <RouterLink to="/cart">
+            <div class="box--primary flex align--center gap--sm">
+              <IconShoppingCart02 />
+              Cart
+            </div>
+          </RouterLink>
           <p class="cart__count">{{ cartStore.count }}</p>
         </div>
       </RouterLink>
