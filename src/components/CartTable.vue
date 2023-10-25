@@ -70,7 +70,7 @@
             </BaseCard>
             <p class="cart__item__quantity__subtext">Max. 99</p>
           </div>
-          <div class="flex flex--column justify--center">${{ (book.price / 100).toFixed(2) }}</div>
+          <div class="flex flex--column justify--center">{{ asDollarsAndCents(book.price * quantity) }}</div>
           <div class="flex flex--column justify--center align--center gap--sm">
             <button class="remove__item__button" @click="deleteItem(book)">
               <IconClose class="remove__item__icon" />
