@@ -5,6 +5,8 @@
 
   import type { BookItemResource } from "@/types";
 
+  import getBookImage from "@/util/get-book-image";
+
   import BaseBookCover from "@/components/BaseBookCover.vue";
   import BaseCard from "@/components/BaseCard.vue";
 
@@ -16,9 +18,6 @@
   }>();
 
   const cartStore = useCartStore();
-
-  // FIXME: boilerplate:
-  const bookImagePrefix = `${import.meta.env.BASE_URL}/covers`;
 </script>
 
 <template>
@@ -26,7 +25,7 @@
   <BaseCard class="category__item">
     <div class="flex gap--sm">
       <div class="book__cover__seat">
-        <BaseBookCover class="book__cover" :src="`${bookImagePrefix}/${book.bookId}.png`" />
+        <BaseBookCover class="book__cover" :src="getBookImage(book.bookId)" />
         <RouterLink to="" v-if="book.isPublic">
           <div class="read__now__button box--secondary">
             <IconBookOpen01 />

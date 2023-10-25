@@ -4,6 +4,7 @@
   import type { BookItemResource } from "@/types";
 
   import { apiUrl } from "@/api";
+  import getBookImage from "@/util/get-book-image";
 
   import BookCover from "@/components/BaseBookCover.vue";
   import IconStar06 from "@/assets/icons/IconStar06.vue";
@@ -20,9 +21,6 @@
     `${apiUrl}/categories/${selectedCategory}/suggested-books?limit=6`
   );
   const featuredBooks = (await featuredBooksResponse.json()) as BookItemResource[];
-
-  // FIXME: boilerplate:
-  const bookImagePrefix = `${import.meta.env.BASE_URL}/covers`;
 </script>
 
 <template>
@@ -45,7 +43,7 @@
         v-bind:key="i"
         :to="`/category/${selectedCategory}`"
       >
-        <BookCover hoverable :src="`${bookImagePrefix}/${item.bookId}.png`" />
+        <BookCover hoverable :src="getBookImage(item.bookId)" />
       </RouterLink>
     </div>
   </div>
