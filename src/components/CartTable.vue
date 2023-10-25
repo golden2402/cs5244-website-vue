@@ -76,6 +76,27 @@
         </div>
       </div>
     </section>
+
+    <!-- subtotal: -->
+    <section>
+      <div class="row">
+        <!-- empty elements; used to align subtotal with price -->
+        <div></div>
+        <div></div>
+        <h3>Subtotal:</h3>
+        <p>
+          ${{
+            (
+              cartStore.cart.items.reduce(
+                (previous, { book: { price }, quantity }) => previous + price * quantity,
+                0
+              ) / 100
+            ).toFixed(2)
+          }}
+        </p>
+        <div></div>
+      </div>
+    </section>
   </BaseCard>
 </template>
 
