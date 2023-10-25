@@ -8,7 +8,7 @@
   import IconClose from "@/assets/icons/IconClose.vue";
   import BaseCard from "./BaseCard.vue";
 
-  const cart = useCartStore().cart;
+  const cartStore = useCartStore();
 
   function handleQuantityChange(input: HTMLInputElement, book: BookItemResource) {
     const { value } = input;
@@ -21,13 +21,13 @@
     // we're going to set a lower bound of 1, so the delete functionality is
     // exclusive to the remove button:
     const newQuantity = Math.min(Math.max(1, Number(value)), 99);
-    if (cart.update(book, newQuantity)) {
+    if (cartStore.updateBookQuantity(book, newQuantity)) {
       input.value = newQuantity.toString();
     }
   }
 
   function deleteItem(book: BookItemResource) {
-    return cart.update(book, 0);
+    return cartStore.updateBookQuantity(book, 0);
   }
 </script>
 
@@ -43,7 +43,11 @@
 
     <!-- fill: -->
     <section class="table__contents">
-      <div v-for="{ book, quantity } in cart.items" :key="book.bookId" class="cart__item row">
+      <div
+        v-for="{ book, quantity } in cartStore.cart.items"
+        :key="book.bookId"
+        class="cart__item row"
+      >
         <div class="flex justify--center">
           <BaseCard class="cart__item__cover__seat">
             <img class="cart__item__cover" :src="getBookImage(book.bookId)" />

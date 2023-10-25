@@ -32,8 +32,10 @@ export const useCartStore = defineStore("CartStore", {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(this.cart));
     },
     updateBookQuantity(book: BookItemResource, quantity: number) {
-      this.cart.update(book, quantity);
+      const result = this.cart.update(book, quantity);
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(this.cart));
+
+      return result;
     }
   }
 });

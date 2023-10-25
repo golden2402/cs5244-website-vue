@@ -79,7 +79,7 @@ export class ShoppingCart {
    * 10/25/2023:
    * updated to return true/false based on if a valid input was passed to it
    */
-  update(book: BookItemResource, quantity: number) {
+  update(book: BookItemResource, quantity: number): boolean {
     if (quantity < 0 || quantity > 99) {
       return false;
     }
