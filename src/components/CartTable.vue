@@ -4,6 +4,7 @@
   import type { BookItemResource } from "@/types";
 
   import getBookImage from "@/util/get-book-image";
+  import asDollarsAndCents from "@/util/as-dollars-and-cents";
 
   import IconClose from "@/assets/icons/IconClose.vue";
   import BaseCard from "./BaseCard.vue";
@@ -85,13 +86,13 @@
         <div></div>
         <h3>Subtotal:</h3>
         <p>
-          ${{
-            (
+          {{
+            asDollarsAndCents(
               cartStore.cart.items.reduce(
                 (previous, { book: { price }, quantity }) => previous + price * quantity,
                 0
-              ) / 100
-            ).toFixed(2)
+              )
+            )
           }}
         </p>
         <div></div>

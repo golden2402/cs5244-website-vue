@@ -6,6 +6,7 @@
   import type { BookItemResource } from "@/types";
 
   import getBookImage from "@/util/get-book-image";
+  import asDollarsAndCents from "@/util/as-dollars-and-cents";
 
   import BaseBookCover from "@/components/BaseBookCover.vue";
   import BaseCard from "@/components/BaseCard.vue";
@@ -40,7 +41,7 @@
 
         <section class="flex gap--sm">
           <div class="book__cost flex justify--center align--center">
-            <p>${{ (book.price / 100).toFixed(2) }}</p>
+            <p>{{ asDollarsAndCents(book.price) }}</p>
           </div>
           <button @click="cartStore.addToCart(book)">
             <div class="flex gap--sm align--center box--primary">
@@ -98,3 +99,4 @@
     border-radius: var(--default-border-radius);
   }
 </style>
+@/util/as-dollars-and-cents
