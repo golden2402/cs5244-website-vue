@@ -9,6 +9,20 @@
   import BaseCard from "./BaseCard.vue";
 
   const cart = useCartStore().cart;
+
+  function handleQuantityChange(input: HTMLInputElement, book: BookItemResource) {
+    const { value } = input;
+    // if we have an empty character, it likely means someone is stil trying to
+    // type! short-circuit instead of quantifying as 0 (and thus deleting):
+    if (value === "") {
+      return;
+    }
+
+    const newQuantity = Math.min(Math.max(0, Number(value)), 99);
+    if (cart.update(book, newQuantity)) {
+      input.value = newQuantity.toString();
+    }
+  }
 </script>
 
 <template>
@@ -35,8 +49,14 @@
         </div>
         <div class="flex flex--column justify--center">
           <BaseCard>
-            <input class="cart__item__quantity" type="number" :value="quantity" />
+            <input
+              class="cart__item__quantity"
+              type="number"
+              :value="quantity"
+              @input="(e) => handleQuantityChange(e.target as HTMLInputElement, book)"
+            />
           </BaseCard>
+          <p class="cart__item__quantity__subtext">Max. 99</p>
         </div>
         <div class="flex flex--column justify--center">${{ (book.price / 100).toFixed(2) }}</div>
         <div class="flex flex--column justify--center align--center gap--sm">
@@ -69,7 +89,7 @@
   .cart__item:nth-child(odd) {
     background-color: var(--secondary-color);
   }
-  
+
   .cart__item__cover__seat {
     padding: 0.2em;
   }
@@ -84,6 +104,11 @@
 
   .cart__item__quantity {
     width: 100%;
+  }
+
+  .cart__item__quantity__subtext {
+    color: var(--text-color-mute);
+    font-size: 0.8em;
   }
 
   .remove__item__button {

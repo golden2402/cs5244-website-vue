@@ -75,9 +75,14 @@ export class ShoppingCart {
   /**
    * Updates the quantity of the specified book by the specified amount.
    * If '0' is the given quantity, the book is removed from the cart.
+   *
+   * 10/25/2023:
+   * updated to return true/false based on if a valid input was passed to it
    */
   update(book: BookItemResource, quantity: number) {
-    if (quantity < 0 || quantity > 99) return;
+    if (quantity < 0 || quantity > 99) {
+      return false;
+    }
 
     const existingItemIndex = this.itemArray.findIndex((item) => item.book.bookId == book.bookId);
     if (existingItemIndex !== -1) {
@@ -88,6 +93,8 @@ export class ShoppingCart {
         this.itemArray.splice(existingItemIndex, 1);
       }
     }
+
+    return true;
   }
 
   get items(): readonly ShoppingCartItem[] {
