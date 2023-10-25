@@ -1,40 +1,49 @@
 <script setup lang="ts">
   import type { RouterLink } from "vue-router";
+
+  import CartTable from "@/components/CartTable.vue";
 </script>
 
 <template>
-  <div class="cart_page flex container">
-    <!-- cart table: -->
-    <div>
-      <h1>Your Cart</h1>
-      <!-- cart component -->
-    </div>
-    <!-- actions: -->
-    <div class="action__column flex flex--column gap--sm">
-      <RouterLink to="/checkout">
-        <div class="cta box--primary">
-          <h1 class="cta__title">Checkout</h1>
-        </div>
-      </RouterLink>
-      <RouterLink to="/category">
-        <div class="continue__shopping__button box--secondary">
-          <p class="title">Continue Shopping</p>
-        </div>
-      </RouterLink>
-      <button class="clear__cart__button">
-        <i>Clear Cart</i>
-      </button>
+  <div class="cart__page container">
+    <h1>Your Cart</h1>
+    <div class="cart__columns flex gap--md container">
+      <!-- cart table: -->
+      <div class="cart__table">
+        <CartTable />
+      </div>
+      <!-- actions: -->
+      <div class="cart__actions flex flex--column gap--sm">
+        <RouterLink to="/checkout">
+          <div class="cta box--primary">
+            <h1 class="cta__title">Checkout</h1>
+          </div>
+        </RouterLink>
+        <RouterLink to="/category">
+          <div class="continue__shopping__button box--secondary">
+            <p class="title">Continue Shopping</p>
+          </div>
+        </RouterLink>
+        <button class="clear__cart__button">
+          <i>Clear Cart</i>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .cart_page > * {
-    flex: 1;
-    padding: 1em;
+  .cart__page {
+    padding: 4em;
   }
 
-  .action__column {
+  .cart__columns > * {
+  }
+
+  .cart__table {
+  }
+
+  .cart__actions {
     min-width: 24em;
   }
 
