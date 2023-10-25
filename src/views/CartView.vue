@@ -4,7 +4,9 @@
   import { useCartStore } from "@/stores/cart";
   import { useCategoryStore } from "@/stores/category";
 
+  import BaseCard from "@/components/BaseCard.vue";
   import CartTable from "@/components/CartTable.vue";
+  import asDollarsAndCents from "@/util/as-dollars-and-cents";
 
   const cartStore = useCartStore();
   const categoryList = useCategoryStore().categoryList;
@@ -20,6 +22,19 @@
       </div>
       <!-- actions: -->
       <div class="cart__actions flex flex--column gap--sm">
+        <BaseCard>
+          <h2>Totals</h2>
+          <div class="cart__total__grid">
+            <p class="cart__total__header">Number of Items:</p>
+            <p>{{ cartStore.count }}</p>
+
+            <p class="cart__total__header">Subtotal:</p>
+            <p>
+              {{ asDollarsAndCents(cartStore.cart.subtotal) }}
+            </p>
+          </div>
+        </BaseCard>
+
         <RouterLink to="/checkout">
           <div class="cta box--primary">
             <h1 class="cta__title">Checkout</h1>
@@ -51,6 +66,16 @@
 
   .cart__actions {
     min-width: 24em;
+  }
+
+  .cart__total__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+
+  .cart__total__header {
+    font-weight: 500;
   }
 
   .cta .cta__title {

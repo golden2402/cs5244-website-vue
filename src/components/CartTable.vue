@@ -70,33 +70,14 @@
             </BaseCard>
             <p class="cart__item__quantity__subtext">Max. 99</p>
           </div>
-          <div class="flex flex--column justify--center">{{ asDollarsAndCents(book.price * quantity) }}</div>
+          <div class="flex flex--column justify--center">
+            {{ asDollarsAndCents(book.price * quantity) }}
+          </div>
           <div class="flex flex--column justify--center align--center gap--sm">
             <button class="remove__item__button" @click="deleteItem(book)">
               <IconClose class="remove__item__icon" />
             </button>
           </div>
-        </div>
-      </section>
-
-      <!-- subtotal: -->
-      <section>
-        <div class="row">
-          <!-- empty elements; used to align subtotal with price -->
-          <div></div>
-          <div></div>
-          <h3>Subtotal:</h3>
-          <p>
-            {{
-              asDollarsAndCents(
-                cartStore.cart.items.reduce(
-                  (previous, { book: { price }, quantity }) => previous + price * quantity,
-                  0
-                )
-              )
-            }}
-          </p>
-          <div></div>
         </div>
       </section>
     </div>
