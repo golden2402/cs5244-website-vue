@@ -18,10 +18,16 @@
       return;
     }
 
-    const newQuantity = Math.min(Math.max(0, Number(value)), 99);
+    // we're going to set a lower bound of 1, so the delete functionality is
+    // exclusive to the remove button:
+    const newQuantity = Math.min(Math.max(1, Number(value)), 99);
     if (cart.update(book, newQuantity)) {
       input.value = newQuantity.toString();
     }
+  }
+
+  function deleteItem(book: BookItemResource) {
+    return cart.update(book, 0);
   }
 </script>
 
@@ -60,7 +66,7 @@
         </div>
         <div class="flex flex--column justify--center">${{ (book.price / 100).toFixed(2) }}</div>
         <div class="flex flex--column justify--center align--center gap--sm">
-          <button class="remove__item__button">
+          <button class="remove__item__button" @click="deleteItem(book)">
             <IconClose class="remove__item__icon" />
           </button>
         </div>
