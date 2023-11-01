@@ -7,7 +7,7 @@
   import { useCartStore } from "@/stores/cart";
   import { isCreditCard, isMobilePhone } from "@/util/validators";
 
-  // import router from "@/router";
+  import router from "@/router";
 
   import BaseCard from "@/components/BaseCard.vue";
   import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
@@ -73,17 +73,25 @@
     ccExpiryYear: {
       required: helpers.withMessage("Please provide a credit card expiry year.", required)
     }
-    // TODO: Add more validations for these and other fields that need more validation.
   };
   const v$ = useVuelidate(rules, form);
 
   async function submitOrder() {
-    console.log("Submit order");
     const isFormCorrect = await v$.value.$validate();
-    if (!isFormCorrect) return;
+
+    if (!isFormCorrect) {
+      form.checkoutStatus = "ERROR";
+    } else {
+      form.checkoutStatus = "PENDING";
+      setTimeout(() => {
+        form.checkoutStatus = "OK";
+        setTimeout(() => {
+          router.push({ name: "confirmation" });
+        }, 1000);
+      }, 1000);
+    }
   }
 
-  /* NOTE: For example yearFrom(0) == <current_year> */
   function yearFrom(index: number) {
     return new Date().getFullYear() + index;
   }
@@ -175,10 +183,10 @@
 
           <section class="checkout__total">
             Your credit card will be charged
-            <strong>
-              {{ asDollarsAndCents(cart.subtotal + surchargeInCents) }} </strong
-            >. ({{ asDollarsAndCents(cart.subtotal) }} +
-            {{ asDollarsAndCents(surchargeInCents) }} shipping)
+            <strong> {{ asDollarsAndCents(cart.subtotal + surchargeInCents) }} </strong>. ({{
+              asDollarsAndCents(cart.subtotal)
+            }}
+            + {{ asDollarsAndCents(surchargeInCents) }} shipping)
           </section>
 
           <div class="box--primary checkout__input__field checkout__submit">
@@ -189,18 +197,17 @@
               value="Complete Purchase"
             />
           </div>
-          <!-- TODO (style): The submit button should not take up the entire width of the form. -->
-          <!-- TODO (style): The submit button should be styled consistent with your own site. -->
-        </form>
 
-        <section v-show="form.checkoutStatus !== ''">
-          <div v-if="form.checkoutStatus === 'ERROR'">
-            Error: Please fix the problems above and try again.
-          </div>
-          <div v-else-if="form.checkoutStatus === 'PENDING'">Processing...</div>
-          <div v-else-if="form.checkoutStatus === 'OK'">Order placed...</div>
-          <div v-else>An unexpected error occurred, please try again.</div>
-        </section>
+          <section v-show="form.checkoutStatus !== ''">
+            <div class="checkout__submit__error" v-if="form.checkoutStatus === 'ERROR'">
+              Error: Please fix the problems above and try again.
+            </div>
+            <div v-else-if="form.checkoutStatus === 'PENDING'">Processing...</div>
+            <!-- TODO: remove this!? -->
+            <div v-else-if="form.checkoutStatus === 'OK'">Order placed!</div>
+            <div v-else>An unexpected error occurred, please try again.</div>
+          </section>
+        </form>
       </template>
     </BaseCard>
   </div>
@@ -255,5 +262,9 @@
     font-size: 1.2em;
 
     cursor: pointer;
+  }
+
+  .checkout__submit__error {
+    color: var(--danger-color);
   }
 </style>
