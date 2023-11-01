@@ -5,6 +5,8 @@
   import { helpers, maxLength, minLength, required, email } from "@vuelidate/validators";
 
   import { useCartStore } from "@/stores/cart";
+  import { useCategoryStore } from "@/stores/category";
+
   import { isCreditCard, isMobilePhone } from "@/util/validators";
 
   import router from "@/router";
@@ -17,6 +19,8 @@
 
   const cartStore = useCartStore();
   const cart = cartStore.cart;
+
+  const categoryList = useCategoryStore().categoryList;
 
   const months: string[] = [
     "January",
@@ -101,115 +105,146 @@
   <div class="checkout__page container flex flex--column">
     <h1>Checkout</h1>
 
-    <BaseCard class="checkout__form__base">
-      <template v-if="!cart.empty">
-        <form
-          class="checkout__form flex flex--column align--center gap--md"
-          @submit.prevent="submitOrder"
-        >
-          <div class="checkout__input__field checkout__grid__column">
-            <div>
-              <label for="name">Name</label>
-              <BaseCard>
-                <input type="text" id="name" name="name" v-model.lazy="v$.name.$model" />
-              </BaseCard>
-              <CheckoutFieldError :field-name="v$.name" />
+    <template v-if="!cart.empty">
+      <div class="flex gap--md">
+        <BaseCard class="checkout__form__base">
+          <form
+            class="checkout__form flex flex--column align--center gap--md"
+            @submit.prevent="submitOrder"
+          >
+            <div class="checkout__input__field checkout__grid__column">
+              <div>
+                <label for="name">Name</label>
+                <BaseCard>
+                  <input type="text" id="name" name="name" v-model.lazy="v$.name.$model" />
+                </BaseCard>
+                <CheckoutFieldError :field-name="v$.name" />
+              </div>
+
+              <div>
+                <label for="phone">Phone</label>
+                <BaseCard>
+                  <input
+                    class="textField"
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    v-model.lazy="v$.phone.$model"
+                  />
+                </BaseCard>
+                <CheckoutFieldError :field-name="v$.phone" />
+              </div>
             </div>
 
-            <div>
-              <label for="phone">Phone</label>
+            <div class="checkout__input__field">
+              <label for="address">Address</label>
               <BaseCard>
-                <input
-                  class="textField"
-                  type="text"
-                  id="phone"
-                  name="phone"
-                  v-model.lazy="v$.phone.$model"
-                />
+                <input type="text" id="address" name="address" v-model.lazy="v$.address.$model" />
               </BaseCard>
-              <CheckoutFieldError :field-name="v$.phone" />
+              <CheckoutFieldError :field-name="v$.address" />
             </div>
-          </div>
 
-          <div class="checkout__input__field">
-            <label for="address">Address</label>
-            <BaseCard>
-              <input type="text" id="address" name="address" v-model.lazy="v$.address.$model" />
-            </BaseCard>
-            <CheckoutFieldError :field-name="v$.address" />
-          </div>
+            <div class="checkout__input__field">
+              <label for="email">Email</label>
+              <BaseCard>
+                <input type="text" id="email" name="email" v-model.lazy="v$.email.$model" />
+              </BaseCard>
+              <CheckoutFieldError :field-name="v$.email" />
+            </div>
 
-          <div class="checkout__input__field">
-            <label for="email">Email</label>
-            <BaseCard>
-              <input type="text" id="email" name="email" v-model.lazy="v$.email.$model" />
-            </BaseCard>
-            <CheckoutFieldError :field-name="v$.email" />
+            <div class="checkout__grid__column">
+              <div class="checkout__input__field">
+                <label for="ccNumber">Card Number</label>
+                <BaseCard>
+                  <input
+                    type="text"
+                    id="ccNumber"
+                    name="ccNumber"
+                    v-model.lazy="v$.ccNumber.$model"
+                  />
+                </BaseCard>
+                <CheckoutFieldError :field-name="v$.ccNumber" />
+              </div>
+
+              <div class="checkout__input__field">
+                <label>Expiration Date</label>
+                <div class="checkout__grid__column">
+                  <select v-model="v$.ccExpiryMonth">
+                    <option v-for="(month, index) in months" :key="index" :value="index + 1">
+                      {{ (index + 1).toString().padStart(2, "0") }} ({{ month }})
+                    </option>
+                  </select>
+
+                  <select v-model="v$.ccExpiryYear">
+                    <option v-for="index in 16" :key="index" :value="yearFrom(index - 1)">
+                      {{ yearFrom(index - 1) }}
+                    </option>
+                  </select>
+                </div>
+                <CheckoutFieldError :field-name="v$.ccExpiryMonth" />
+                <CheckoutFieldError :field-name="v$.ccExpiryYear" />
+              </div>
+            </div>
+
+            <section class="checkout__total">
+              Your card will be charged
+              <strong> {{ asDollarsAndCents(cart.subtotal + surchargeInCents) }} </strong>.
+            </section>
+
+            <div class="box--primary checkout__input__field checkout__submit">
+              <input
+                type="submit"
+                name="submit"
+                :disabled="form.checkoutStatus === 'PENDING'"
+                value="Complete Purchase"
+              />
+            </div>
+
+            <section v-show="form.checkoutStatus !== ''">
+              <div class="checkout__submit__error" v-if="form.checkoutStatus === 'ERROR'">
+                Error: Please fix the problems above and try again.
+              </div>
+              <div v-else-if="form.checkoutStatus === 'PENDING'">Processing...</div>
+              <!-- TODO: remove this!? -->
+              <div v-else-if="form.checkoutStatus === 'OK'">Order placed!</div>
+              <div v-else>An unexpected error occurred, please try again.</div>
+            </section>
+          </form>
+        </BaseCard>
+        <BaseCard class="checkout__summary">
+          <div class="checkout__grid__column">
+            <p class="checkout__summary__title">Subtotal</p>
+            <p>{{ asDollarsAndCents(cart.subtotal) }}</p>
           </div>
 
           <div class="checkout__grid__column">
-            <div class="checkout__input__field">
-              <label for="ccNumber">Card Number</label>
-              <BaseCard>
-                <input
-                  type="text"
-                  id="ccNumber"
-                  name="ccNumber"
-                  v-model.lazy="v$.ccNumber.$model"
-                />
-              </BaseCard>
-              <CheckoutFieldError :field-name="v$.ccNumber" />
-            </div>
-
-            <div class="checkout__input__field">
-              <label>Expiration Date</label>
-              <div class="checkout__grid__column">
-                <select v-model="v$.ccExpiryMonth">
-                  <option v-for="(month, index) in months" :key="index" :value="index + 1">
-                    {{ (index + 1).toString().padStart(2, "0") }} ({{ month }})
-                  </option>
-                </select>
-
-                <select v-model="v$.ccExpiryYear">
-                  <option v-for="index in 16" :key="index" :value="yearFrom(index - 1)">
-                    {{ yearFrom(index - 1) }}
-                  </option>
-                </select>
-              </div>
-              <CheckoutFieldError :field-name="v$.ccExpiryMonth" />
-              <CheckoutFieldError :field-name="v$.ccExpiryYear" />
-            </div>
+            <p class="checkout__summary__title">Shipping</p>
+            <p>{{ asDollarsAndCents(surchargeInCents) }}</p>
           </div>
 
-          <section class="checkout__total">
-            Your credit card will be charged
-            <strong> {{ asDollarsAndCents(cart.subtotal + surchargeInCents) }} </strong>. ({{
-              asDollarsAndCents(cart.subtotal)
-            }}
-            + {{ asDollarsAndCents(surchargeInCents) }} shipping)
-          </section>
+          <div class="checkout__summary__divider"></div>
 
-          <div class="box--primary checkout__input__field checkout__submit">
-            <input
-              type="submit"
-              name="submit"
-              :disabled="form.checkoutStatus === 'PENDING'"
-              value="Complete Purchase"
-            />
+          <div class="checkout__grid__column">
+            <h2>Total</h2>
+            <p>{{ asDollarsAndCents(cart.subtotal + surchargeInCents) }}</p>
           </div>
-
-          <section v-show="form.checkoutStatus !== ''">
-            <div class="checkout__submit__error" v-if="form.checkoutStatus === 'ERROR'">
-              Error: Please fix the problems above and try again.
-            </div>
-            <div v-else-if="form.checkoutStatus === 'PENDING'">Processing...</div>
-            <!-- TODO: remove this!? -->
-            <div v-else-if="form.checkoutStatus === 'OK'">Order placed!</div>
-            <div v-else>An unexpected error occurred, please try again.</div>
-          </section>
-        </form>
-      </template>
-    </BaseCard>
+        </BaseCard>
+      </div>
+    </template>
+    <template v-else>
+      <div class="flex flex--column gap--md">
+        <BaseCard class="flex flex--column align--center gap--sm">
+          <h2>Uh oh!</h2>
+          <p>Looks like your cart is empty&mdash;so you can&apos;t make a purchase!</p>
+        </BaseCard>
+        
+        <RouterLink :to="`/category/${Array.from(categoryList.keys())[0]}`">
+          <div class="continue__shopping__button box--secondary">
+            <p class="title">Back to Shopping</p>
+          </div>
+        </RouterLink>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -266,5 +301,31 @@
 
   .checkout__submit__error {
     color: var(--danger-color);
+  }
+
+  .checkout__summary {
+    min-width: 24em;
+    height: max-content;
+  }
+
+  .checkout__summary__title {
+    font-weight: 600;
+  }
+
+  .checkout__summary__divider {
+    margin: 0.4em 0;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: var(--text-color-mute);
+  }
+
+  .continue__shopping__button {
+    text-align: center;
+  }
+
+  .continue__shopping__button .title {
+    font-size: 1.1em;
   }
 </style>
