@@ -4,9 +4,10 @@
   import { useCartStore } from "@/stores/cart";
   import { useCategoryStore } from "@/stores/category";
 
+  import asDollarsAndCents from "@/util/as-dollars-and-cents";
+
   import BaseCard from "@/components/BaseCard.vue";
   import CartTable from "@/components/CartTable.vue";
-  import asDollarsAndCents from "@/util/as-dollars-and-cents";
 
   const cartStore = useCartStore();
   const categoryList = useCategoryStore().categoryList;
@@ -35,11 +36,13 @@
           </div>
         </BaseCard>
 
-        <RouterLink to="/checkout">
-          <div class="cta box--primary">
-            <h1 class="cta__title">Checkout</h1>
-          </div>
-        </RouterLink>
+        <template v-if="!cartStore.cart.empty">
+          <RouterLink to="/checkout">
+            <div class="cta box--primary">
+              <h1 class="cta__title">Checkout</h1>
+            </div>
+          </RouterLink>
+        </template>
         <RouterLink :to="`/category/${Array.from(categoryList.keys())[0]}`">
           <div class="continue__shopping__button box--secondary">
             <p class="title">Continue Shopping</p>
