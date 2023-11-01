@@ -9,9 +9,10 @@
 
 <template>
   <template v-if="fieldName.$error">
-    <div class="error" v-for="error of fieldName.$errors" :key="error.$uid">
+    <!-- <div class="error" v-for="error of fieldName.$errors" :key="error.$uid">
       {{ error.$message }}
-    </div>
+    </div> -->
+    <div class="error">{{ fieldName.$errors[0].$message }}</div>
   </template>
 </template>
 

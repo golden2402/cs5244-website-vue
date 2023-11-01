@@ -5,12 +5,15 @@
   import { helpers, maxLength, minLength, required, email } from "@vuelidate/validators";
 
   import { useCartStore } from "@/stores/cart";
-  // import { isCreditCard, isMobilePhone } from "@/utils";
-  // import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
+  import { isCreditCard, isMobilePhone } from "@/util/validators";
+
   // import router from "@/router";
 
   import BaseCard from "@/components/BaseCard.vue";
   import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
+  // import asDollarsAndCents from "@/util/as-dollars-and-cents";
+
+  // const surchargeInCents = 500;
 
   const cartStore = useCartStore();
   const cart = cartStore.cart;
@@ -55,6 +58,20 @@
     email: {
       required: helpers.withMessage("Please provide an email address.", required),
       isFormatted: helpers.withMessage("Please provide a valid email address.", email)
+    },
+    phone: {
+      required: helpers.withMessage("Please provide an email address.", required),
+      isFormatted: helpers.withMessage("Please provide a valid phone number.", isMobilePhone)
+    },
+    ccNumber: {
+      required: helpers.withMessage("Please provide a credit card number.", required),
+      isFormatted: helpers.withMessage("Please provide a valid credit card number.", isCreditCard)
+    },
+    ccExpiryMonth: {
+      required: helpers.withMessage("Please provide a credit card expiry month.", required)
+    },
+    ccExpiryYear: {
+      required: helpers.withMessage("Please provide a credit card expiry year.", required)
     }
     // TODO: Add more validations for these and other fields that need more validation.
   };
@@ -76,7 +93,7 @@
   <div class="checkout__page container flex flex--column">
     <h1>Checkout</h1>
 
-    <BaseCard>
+    <BaseCard class="checkout__form__base">
       <template v-if="!cart.empty">
         <form class="checkout__form flex flex--column gap--md" @submit.prevent="submitOrder">
           <div>
@@ -107,14 +124,18 @@
             <CheckoutFieldError :field-name="v$.email" />
           </div>
 
-          <div>
-            <div class="checkout__input__field">
-              <label for="phone">Phone</label>
-              <BaseCard>
-                <input class="textField" type="text" id="phone" name="phone" />
-              </BaseCard>
-            </div>
-            <!-- TODO: Add phone validation message(s) -->
+          <div class="checkout__input__field">
+            <label for="phone">Phone</label>
+            <BaseCard>
+              <input
+                class="textField"
+                type="text"
+                id="phone"
+                name="phone"
+                v-model.lazy="v$.phone.$model"
+              />
+            </BaseCard>
+            <CheckoutFieldError :field-name="v$.phone" />
           </div>
 
           <!-- TODO: Add credit card validation message(s) -->
@@ -122,8 +143,14 @@
             <div class="checkout__input__field">
               <label for="ccNumber">Card Number</label>
               <BaseCard>
-                <input type="text" id="ccNumber" name="ccNumber" />
+                <input
+                  type="text"
+                  id="ccNumber"
+                  name="ccNumber"
+                  v-model.lazy="v$.ccNumber.$model"
+                />
               </BaseCard>
+              <CheckoutFieldError :field-name="v$.ccNumber" />
             </div>
 
             <div class="checkout__input__field">
@@ -141,6 +168,8 @@
                   </option>
                 </select>
               </div>
+              <CheckoutFieldError :field-name="v$.ccExpiryMonth" />
+              <CheckoutFieldError :field-name="v$.ccExpiryYear" />
             </div>
           </div>
 
@@ -155,9 +184,7 @@
           <!-- TODO (style): The submit button should be styled consistent with your own site. -->
         </form>
 
-        <!-- TODO: Display the cart total, subtotal and surcharge. -->
-
-        <section v-show="form.checkoutStatus !== ''" class="checkoutStatusBox">
+        <section v-show="form.checkoutStatus !== ''">
           <div v-if="form.checkoutStatus === 'ERROR'">
             Error: Please fix the problems above and try again.
           </div>
@@ -173,6 +200,10 @@
 <style scoped>
   .checkout__page {
     padding: 4em;
+  }
+
+  .checkout__form__base {
+    padding: 1.2em;
   }
 
   .checkout__form {
@@ -199,5 +230,15 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 0.8em;
+  }
+
+  .checkout__total {
+  }
+
+  .checkout__submit {
+    padding: 0.4em 0.6em;
+    width: max-content;
+
+    font-size: 1.2em;
   }
 </style>
