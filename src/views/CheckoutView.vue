@@ -87,9 +87,8 @@
             <BaseCard>
               <input type="text" id="email" name="email" />
             </BaseCard>
+            <!-- TODO: Add email validation message(s) -->
           </div>
-
-          <!-- TODO: Add email validation message(s) -->
 
           <div>
             <div class="checkout__input__field">
@@ -102,7 +101,7 @@
           </div>
 
           <!-- TODO: Add credit card validation message(s) -->
-          <div class="checkout__card__info">
+          <div class="checkout__grid__column">
             <div class="checkout__input__field">
               <label for="ccNumber">Card Number</label>
               <BaseCard>
@@ -111,22 +110,21 @@
             </div>
 
             <div class="checkout__input__field">
-              <label>Expiration Month</label>
-              <select v-model="v$.ccExpiryMonth">
-                <option v-for="(month, index) in months" :key="index" :value="index + 1">
-                  {{ month }} ({{ index + 1 }})
-                </option>
-              </select>
+              <label>Expiration Date</label>
+              <div class="checkout__grid__column">
+                <select v-model="v$.ccExpiryMonth">
+                  <option v-for="(month, index) in months" :key="index" :value="index + 1">
+                    {{ (index + 1).toString().padStart(2, "0") }} ({{ month }})
+                  </option>
+                </select>
+  
+                <select v-model="v$.ccExpiryYear">
+                  <option v-for="index in 16" :key="index" :value="yearFrom(index - 1)">
+                    {{ yearFrom(index - 1) }}
+                  </option>
+                </select>
+              </div>
             </div>
-
-            <div class="checkout__input__field">
-              <label>Expiration Year</label>
-              <select>
-                <!-- TODO: Complete this select tag for 'ccExpiryYear'. -->
-              </select>
-            </div>
-            <!-- TODO (style): Use a single label for both month and date and put the on the same line. -->
-            <!-- TODO (style): For example: Exp Date {Month} {Year}, with space between month/year selectors. -->
           </div>
 
           <input
@@ -139,8 +137,6 @@
           <!-- TODO (style): The submit button should not take up the entire width of the form. -->
           <!-- TODO (style): The submit button should be styled consistent with your own site. -->
         </form>
-        <!-- TODO (style): Fix error message placement so they nearer to the correct fields. -->
-        <!-- TODO (style): HINT: Use another <div> and label, input, and error, and use flexbox to style. -->
 
         <!-- TODO: Display the cart total, subtotal and surcharge. -->
 
@@ -170,7 +166,7 @@
     display: block;
 
     font-size: 1.1em;
-    font-weight: 600;
+    font-weight: 500;
   }
   .checkout__input__field input,
   .checkout__input__field select {
@@ -182,9 +178,9 @@
     font-family: inherit;
   }
 
-  .checkout__card__info {
+  .checkout__grid__column {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 0.8em;
   }
 </style>
