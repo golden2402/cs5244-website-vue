@@ -46,6 +46,11 @@
       required: helpers.withMessage("Please provide a name.", required),
       minLength: helpers.withMessage("Name must have at least 4 letters.", minLength(4)),
       maxLength: helpers.withMessage("Name can have at most 45 letters.", maxLength(45))
+    },
+    address: {
+      required: helpers.withMessage("Please provide a address.", required),
+      minLength: helpers.withMessage("Address must have at least 4 letters.", minLength(4)),
+      maxLength: helpers.withMessage("Address can have at most 45 letters.", maxLength(45))
     }
     // TODO: Add more validations for these and other fields that need more validation.
   };
@@ -80,7 +85,15 @@
             <CheckoutFieldError :field-name="v$.name" />
           </div>
 
-          <!-- TODO: Add address input and validation messages -->
+          <div>
+            <div class="checkout__input__field">
+              <label for="address">Address</label>
+              <BaseCard>
+                <input type="text" id="address" name="address" v-model.lazy="v$.address.$model" />
+              </BaseCard>
+            </div>
+            <CheckoutFieldError :field-name="v$.address" />
+          </div>
 
           <div class="checkout__input__field">
             <label for="email">Email</label>
@@ -117,7 +130,7 @@
                     {{ (index + 1).toString().padStart(2, "0") }} ({{ month }})
                   </option>
                 </select>
-  
+
                 <select v-model="v$.ccExpiryYear">
                   <option v-for="index in 16" :key="index" :value="yearFrom(index - 1)">
                     {{ yearFrom(index - 1) }}
