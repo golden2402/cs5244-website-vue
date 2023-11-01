@@ -2,7 +2,7 @@
   import { reactive } from "vue";
 
   import useVuelidate from "@vuelidate/core";
-  import { helpers, maxLength, minLength, required } from "@vuelidate/validators";
+  import { helpers, maxLength, minLength, required, email } from "@vuelidate/validators";
 
   import { useCartStore } from "@/stores/cart";
   // import { isCreditCard, isMobilePhone } from "@/utils";
@@ -48,9 +48,13 @@
       maxLength: helpers.withMessage("Name can have at most 45 letters.", maxLength(45))
     },
     address: {
-      required: helpers.withMessage("Please provide a address.", required),
+      required: helpers.withMessage("Please provide an address.", required),
       minLength: helpers.withMessage("Address must have at least 4 letters.", minLength(4)),
       maxLength: helpers.withMessage("Address can have at most 45 letters.", maxLength(45))
+    },
+    email: {
+      required: helpers.withMessage("Please provide an email address.", required),
+      isFormatted: helpers.withMessage("Please provide a valid email address.", email)
     }
     // TODO: Add more validations for these and other fields that need more validation.
   };
@@ -98,9 +102,9 @@
           <div class="checkout__input__field">
             <label for="email">Email</label>
             <BaseCard>
-              <input type="text" id="email" name="email" />
+              <input type="text" id="email" name="email" v-model.lazy="v$.email.$model" />
             </BaseCard>
-            <!-- TODO: Add email validation message(s) -->
+            <CheckoutFieldError :field-name="v$.email" />
           </div>
 
           <div>
