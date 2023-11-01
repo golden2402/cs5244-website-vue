@@ -7,17 +7,17 @@
   }>();
 </script>
 
-<style scoped>
-  form > .error {
-    color: var(--danger-color);
-    text-align: right;
-  }
-</style>
-
 <template>
   <template v-if="fieldName.$error">
-    <span class="error" v-for="error of fieldName.$errors" :key="error.$uid">
+    <div class="error" v-for="error of fieldName.$errors" :key="error.$uid">
       {{ error.$message }}
-    </span>
+    </div>
   </template>
 </template>
+
+<style scoped>
+  .error {
+    color: var(--danger-color);
+    font-size: 0.9em;
+  }
+</style>
