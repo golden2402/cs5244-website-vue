@@ -11,9 +11,9 @@
 
   import BaseCard from "@/components/BaseCard.vue";
   import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
-  // import asDollarsAndCents from "@/util/as-dollars-and-cents";
+  import asDollarsAndCents from "@/util/as-dollars-and-cents";
 
-  // const surchargeInCents = 500;
+  const surchargeInCents = 500;
 
   const cartStore = useCartStore();
   const cart = cartStore.cart;
@@ -95,24 +95,39 @@
 
     <BaseCard class="checkout__form__base">
       <template v-if="!cart.empty">
-        <form class="checkout__form flex flex--column gap--md" @submit.prevent="submitOrder">
-          <div>
-            <div class="checkout__input__field">
+        <form
+          class="checkout__form flex flex--column align--center gap--md"
+          @submit.prevent="submitOrder"
+        >
+          <div class="checkout__input__field checkout__grid__column">
+            <div>
               <label for="name">Name</label>
               <BaseCard>
                 <input type="text" id="name" name="name" v-model.lazy="v$.name.$model" />
               </BaseCard>
+              <CheckoutFieldError :field-name="v$.name" />
             </div>
-            <CheckoutFieldError :field-name="v$.name" />
+
+            <div>
+              <label for="phone">Phone</label>
+              <BaseCard>
+                <input
+                  class="textField"
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  v-model.lazy="v$.phone.$model"
+                />
+              </BaseCard>
+              <CheckoutFieldError :field-name="v$.phone" />
+            </div>
           </div>
 
-          <div>
-            <div class="checkout__input__field">
-              <label for="address">Address</label>
-              <BaseCard>
-                <input type="text" id="address" name="address" v-model.lazy="v$.address.$model" />
-              </BaseCard>
-            </div>
+          <div class="checkout__input__field">
+            <label for="address">Address</label>
+            <BaseCard>
+              <input type="text" id="address" name="address" v-model.lazy="v$.address.$model" />
+            </BaseCard>
             <CheckoutFieldError :field-name="v$.address" />
           </div>
 
@@ -124,21 +139,6 @@
             <CheckoutFieldError :field-name="v$.email" />
           </div>
 
-          <div class="checkout__input__field">
-            <label for="phone">Phone</label>
-            <BaseCard>
-              <input
-                class="textField"
-                type="text"
-                id="phone"
-                name="phone"
-                v-model.lazy="v$.phone.$model"
-              />
-            </BaseCard>
-            <CheckoutFieldError :field-name="v$.phone" />
-          </div>
-
-          <!-- TODO: Add credit card validation message(s) -->
           <div class="checkout__grid__column">
             <div class="checkout__input__field">
               <label for="ccNumber">Card Number</label>
@@ -173,13 +173,22 @@
             </div>
           </div>
 
-          <input
-            type="submit"
-            name="submit"
-            class="button"
-            :disabled="form.checkoutStatus === 'PENDING'"
-            value="Complete Purchase"
-          />
+          <section class="checkout__total">
+            Your credit card will be charged
+            <strong>
+              {{ asDollarsAndCents(cart.subtotal + surchargeInCents) }} </strong
+            >. ({{ asDollarsAndCents(cart.subtotal) }} +
+            {{ asDollarsAndCents(surchargeInCents) }} shipping)
+          </section>
+
+          <div class="box--primary checkout__input__field checkout__submit">
+            <input
+              type="submit"
+              name="submit"
+              :disabled="form.checkoutStatus === 'PENDING'"
+              value="Complete Purchase"
+            />
+          </div>
           <!-- TODO (style): The submit button should not take up the entire width of the form. -->
           <!-- TODO (style): The submit button should be styled consistent with your own site. -->
         </form>
@@ -210,6 +219,10 @@
     width: max-content;
   }
 
+  .checkout__input__field {
+    width: 100%;
+  }
+
   .checkout__input__field label {
     display: block;
 
@@ -236,9 +249,11 @@
   }
 
   .checkout__submit {
-    padding: 0.4em 0.6em;
+    padding: 0.6em 1em;
     width: max-content;
 
     font-size: 1.2em;
+
+    cursor: pointer;
   }
 </style>
