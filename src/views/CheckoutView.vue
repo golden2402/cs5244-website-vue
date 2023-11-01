@@ -10,7 +10,7 @@
   // import router from "@/router";
 
   import BaseCard from "@/components/BaseCard.vue";
-import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
+  import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
 
   const cartStore = useCartStore();
   const cart = cartStore.cart;
@@ -64,61 +64,70 @@ import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
 </script>
 
 <template>
-  <div class="checkout__page container flex">
+  <div class="checkout__page container flex flex--column">
     <h1>Checkout</h1>
 
     <BaseCard>
-      <section class="checkout__form" v-if="!cart.empty">
-        <form @submit.prevent="submitOrder">
+      <template v-if="!cart.empty">
+        <form class="checkout__form flex flex--column gap--md" @submit.prevent="submitOrder">
           <div>
-            <div>
+            <div class="checkout__input__field">
               <label for="name">Name</label>
-              <input type="text" size="20" id="name" name="name" v-model.lazy="v$.name.$model" />
+              <BaseCard>
+                <input type="text" id="name" name="name" v-model.lazy="v$.name.$model" />
+              </BaseCard>
             </div>
             <CheckoutFieldError :field-name="v$.name" />
           </div>
 
           <!-- TODO: Add address input and validation messages -->
 
-          <div>
-            <div>
-              <label for="phone">Phone</label>
-              <input class="textField" type="text" size="20" id="phone" name="phone" />
-            </div>
-            <!-- TODO: Add phone validation message(s) -->
-          </div>
-
-          <div>
+          <div class="checkout__input__field">
             <label for="email">Email</label>
-            <input type="text" size="20" id="email" name="email" />
+            <BaseCard>
+              <input type="text" id="email" name="email" />
+            </BaseCard>
           </div>
 
           <!-- TODO: Add email validation message(s) -->
 
           <div>
-            <label for="ccNumber">Credit card</label>
-            <input type="text" size="20" id="ccNumber" name="ccNumber" />
+            <div class="checkout__input__field">
+              <label for="phone">Phone</label>
+              <BaseCard>
+                <input class="textField" type="text" id="phone" name="phone" />
+              </BaseCard>
+            </div>
+            <!-- TODO: Add phone validation message(s) -->
           </div>
 
           <!-- TODO: Add credit card validation message(s) -->
+          <div class="checkout__card__info">
+            <div class="checkout__input__field">
+              <label for="ccNumber">Card Number</label>
+              <BaseCard>
+                <input type="text" id="ccNumber" name="ccNumber" />
+              </BaseCard>
+            </div>
 
-          <div>
-            <label>Expiration Month</label>
-            <select v-model="v$.ccExpiryMonth">
-              <option v-for="(month, index) in months" :key="index" :value="index + 1">
-                {{ month }} ({{ index + 1 }})
-              </option>
-            </select>
-          </div>
+            <div class="checkout__input__field">
+              <label>Expiration Month</label>
+              <select v-model="v$.ccExpiryMonth">
+                <option v-for="(month, index) in months" :key="index" :value="index + 1">
+                  {{ month }} ({{ index + 1 }})
+                </option>
+              </select>
+            </div>
 
-          <div>
-            <label>Expiration Year</label>
-            <select>
-              <!-- TODO: Complete this select tag for 'ccExpiryYear'. -->
-            </select>
+            <div class="checkout__input__field">
+              <label>Expiration Year</label>
+              <select>
+                <!-- TODO: Complete this select tag for 'ccExpiryYear'. -->
+              </select>
+            </div>
+            <!-- TODO (style): Use a single label for both month and date and put the on the same line. -->
+            <!-- TODO (style): For example: Exp Date {Month} {Year}, with space between month/year selectors. -->
           </div>
-          <!-- TODO (style): Use a single label for both month and date and put the on the same line. -->
-          <!-- TODO (style): For example: Exp Date {Month} {Year}, with space between month/year selectors. -->
 
           <input
             type="submit"
@@ -139,23 +148,43 @@ import CheckoutFieldError from "@/components/CheckoutFieldError.vue";
           <div v-if="form.checkoutStatus === 'ERROR'">
             Error: Please fix the problems above and try again.
           </div>
-
           <div v-else-if="form.checkoutStatus === 'PENDING'">Processing...</div>
-
           <div v-else-if="form.checkoutStatus === 'OK'">Order placed...</div>
-
           <div v-else>An unexpected error occurred, please try again.</div>
         </section>
-      </section>
+      </template>
     </BaseCard>
   </div>
 </template>
 
 <style scoped>
   .checkout__page {
-    display: flex;
-    flex-direction: column;
-
     padding: 4em;
+  }
+
+  .checkout__form {
+    width: max-content;
+  }
+
+  .checkout__input__field label {
+    display: block;
+
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+  .checkout__input__field input,
+  .checkout__input__field select {
+    width: 100%;
+  }
+
+  .checkout__input__field select {
+    padding: 0.2em;
+    font-family: inherit;
+  }
+
+  .checkout__card__info {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-gap: 0.8em;
   }
 </style>
