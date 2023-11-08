@@ -64,7 +64,7 @@
       isFormatted: helpers.withMessage("Please provide a valid email address.", email)
     },
     phone: {
-      required: helpers.withMessage("Please provide an email address.", required),
+      required: helpers.withMessage("Please provide a phone number.", required),
       isFormatted: helpers.withMessage("Please provide a valid phone number.", isMobilePhone)
     },
     ccNumber: {
@@ -237,7 +237,7 @@
           <h2>Uh oh!</h2>
           <p>Looks like your cart is empty&mdash;so you can&apos;t make a purchase!</p>
         </BaseCard>
-        
+
         <RouterLink :to="`/category/${Array.from(categoryList.keys())[0]}`">
           <div class="continue__shopping__button box--secondary">
             <p class="title">Back to Shopping</p>
