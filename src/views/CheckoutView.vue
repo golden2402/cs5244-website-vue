@@ -1,5 +1,7 @@
 <script setup lang="ts">
-  import { reactive } from "vue";
+  import { reactive, ref } from "vue";
+
+  import type { OrderDetails, ServerErrorResponse } from "@/types";
 
   import useVuelidate from "@vuelidate/core";
   import { helpers, maxLength, minLength, required, email } from "@vuelidate/validators";
@@ -36,6 +38,9 @@
     "November",
     "December"
   ];
+
+  const defaultServerErrorMessage = "An unexpected error occurred, please try again.";
+  const serverErrorMessage = ref(defaultServerErrorMessage);
 
   const form = reactive({
     name: "",
@@ -81,18 +86,38 @@
   const v$ = useVuelidate(rules, form);
 
   async function submitOrder() {
+    console.log("Submit order");
     const isFormCorrect = await v$.value.$validate();
-
     if (!isFormCorrect) {
       form.checkoutStatus = "ERROR";
     } else {
-      form.checkoutStatus = "PENDING";
-      setTimeout(() => {
-        form.checkoutStatus = "OK";
-        setTimeout(() => {
-          router.push({ name: "confirmation" });
-        }, 1000);
-      }, 1000);
+      try {
+        form.checkoutStatus = "PENDING";
+        serverErrorMessage.value = defaultServerErrorMessage;
+
+        const placeOrderResponse: OrderDetails | ServerErrorResponse = await cartStore.placeOrder({
+          name: form.name,
+          address: form.address,
+          phone: form.phone,
+          email: form.email,
+          ccNumber: form.ccNumber,
+          ccExpiryMonth: form.ccExpiryMonth,
+          ccExpiryYear: form.ccExpiryYear
+        });
+
+        if ("error" in placeOrderResponse) {
+          form.checkoutStatus = "SERVER_ERROR";
+          serverErrorMessage.value = placeOrderResponse.message;
+          console.log("Error placing order", placeOrderResponse);
+        } else {
+          form.checkoutStatus = "OK";
+          await router.push({ name: "confirmation-view" });
+        }
+      } catch (e) {
+        form.checkoutStatus = "SERVER_ERROR";
+        serverErrorMessage.value = defaultServerErrorMessage;
+        console.log("Error placing order", e);
+      }
     }
   }
 
@@ -207,7 +232,7 @@
               <div v-else-if="form.checkoutStatus === 'PENDING'">Processing...</div>
               <!-- TODO: remove this!? -->
               <div v-else-if="form.checkoutStatus === 'OK'">Order placed!</div>
-              <div v-else>An unexpected error occurred, please try again.</div>
+              <div v-else>{{ serverErrorMessage.valueOf() }}</div>
             </section>
           </form>
         </BaseCard>
