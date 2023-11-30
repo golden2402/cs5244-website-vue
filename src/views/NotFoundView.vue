@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useRouter } from "vue-router";
+  
+  const router = useRouter();
+</script>
 
 <template>
   <div class="error__page container flex flex--column align--center gap--md">
@@ -6,11 +10,9 @@
       <h1 class="error__header">Uh oh!</h1>
       <p class="error__subtext">Looks like you ended up somewhere that you shouldn&apos;t be.</p>
     </div>
-    <RouterLink class="error__return__button" to="/">
-      <div class="box--secondary hover">
-        Back to safety
-      </div>
-    </RouterLink>
+    <button @click="router.back()" class="error__return__button" to="/">
+      <div class="box--secondary hover">Back to safety</div>
+    </button>
   </div>
 </template>
 
