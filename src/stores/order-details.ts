@@ -23,7 +23,7 @@ export const useOrderDetailsStore = defineStore("OrderDetailsStore", {
   actions: {
     setOrderDetails(orderDetails?: OrderDetails) {
       this.orderDetails = orderDetails;
-      
+
       if (orderDetails) {
         sessionStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(orderDetails));
       }
