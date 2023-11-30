@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+
+import HomeView from "@/views/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +8,13 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
+      alias: ["/home", "/index.html"],
       component: HomeView
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "error",
+      component: () => import("@/views/NotFoundView.vue")
     },
     {
       path: "/category/:id",
