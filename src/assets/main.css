@@ -36,19 +36,19 @@
   gap: 0.25em;
 }
 
-.flex.gap--sm {
+.gap--sm {
   gap: 0.5em;
 }
 
-.flex.gap--md {
+.gap--md {
   gap: 0.8em;
 }
 
-.flex.gap--lg {
+.gap--lg {
   gap: 1.6em;
 }
 
-.flex.gap--xl {
+.gap--xl {
   gap: 2.4em;
 }
 
