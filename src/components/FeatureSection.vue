@@ -32,7 +32,7 @@
       </div>
       <p class="featured__blurb">
         Jump into
-        <RouterLink :to="`/category/${selectedCategory}`">
+        <RouterLink :to="`/category/${categoryList.get(selectedCategory)}`">
           <span class="highlight">{{ categoryList.get(selectedCategory) }}</span> </RouterLink
         >.
       </p>
@@ -41,7 +41,7 @@
       <RouterLink
         v-for="(item, i) of featuredBooks"
         v-bind:key="i"
-        :to="`/category/${selectedCategory}`"
+        :to="`/category/${categoryList.get(selectedCategory)}`"
       >
         <BookCover hoverable :src="getBookImage(item.bookId)" />
       </RouterLink>

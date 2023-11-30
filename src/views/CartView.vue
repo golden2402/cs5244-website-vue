@@ -43,7 +43,7 @@
             </div>
           </RouterLink>
         </template>
-        <RouterLink :to="`/category/${Array.from(categoryList.keys())[0]}`">
+        <RouterLink :to="`/category/${Array.from(categoryList.values())[0]}`">
           <div class="continue__shopping__button box--secondary">
             <p class="title">Continue Shopping</p>
           </div>

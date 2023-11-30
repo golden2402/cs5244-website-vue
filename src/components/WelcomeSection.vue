@@ -42,7 +42,7 @@
         </QuickstartCard>
       </div>
 
-      <RouterLink :to="`/category/${Array.from(categoryList.keys())[0]}`">
+      <RouterLink :to="`/category/${Array.from(categoryList.values())[0]}`">
         <div class="cta box--primary flex justify--between align--center">
           <h1 class="cta__title">Start Shopping</h1>
           <IconArrow class="arrow" width="36" height="36" />

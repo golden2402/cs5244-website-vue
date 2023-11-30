@@ -263,7 +263,7 @@
           <p>Looks like your cart is empty&mdash;so you can&apos;t make a purchase!</p>
         </BaseCard>
 
-        <RouterLink :to="`/category/${Array.from(categoryList.keys())[0]}`">
+        <RouterLink :to="`/category/${Array.from(categoryList.values())[0]}`">
           <div class="continue__shopping__button box--secondary">
             <p class="title">Back to Shopping</p>
           </div>
