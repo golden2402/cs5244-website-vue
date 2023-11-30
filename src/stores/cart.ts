@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useOrderDetailsStore } from "./order-details";
 
 import type { BookItemResource, CustomerForm, OrderDetails, ServerErrorResponse } from "@/types";
 
@@ -40,7 +41,6 @@ export const useCartStore = defineStore("CartStore", {
     },
     async placeOrder(customerForm: CustomerForm): Promise<OrderDetails | ServerErrorResponse> {
       const order = { cart: this.cart, customerForm: customerForm };
-      console.log(JSON.stringify(order));
 
       const response: Response = await fetch(`${apiUrl}/orders`, {
         mode: "cors",
@@ -58,8 +58,12 @@ export const useCartStore = defineStore("CartStore", {
       const placeOrderResponse: OrderDetails | ServerErrorResponse = await response.json();
 
       if (response.ok) {
+        const orderDetailsStore = useOrderDetailsStore();
+        orderDetailsStore.setOrderDetails(placeOrderResponse as OrderDetails);
+
         this.clearCart();
       }
+
       return placeOrderResponse;
     }
   }
