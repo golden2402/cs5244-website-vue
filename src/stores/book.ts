@@ -9,9 +9,16 @@ export const useBookStore = defineStore("book", {
     bookList: [] as BookItemResource[]
   }),
   actions: {
-    async fetchBooks(categoryId: number) {
-      const response = await fetch(`${apiUrl}/categories/${categoryId}/books`);
-      this.bookList = await response.json();
+    async fetchBooks(categoryName: string) {
+      const response = await fetch(`${apiUrl}/categories/name/${categoryName}/books`);
+      const data = await response.json();
+
+      if (data && !data.error) {
+        this.bookList = data;
+        return true;
+      }
+
+      return false;
     }
   }
 });

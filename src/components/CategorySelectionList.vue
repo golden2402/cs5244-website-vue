@@ -1,18 +1,28 @@
 <script setup lang="ts">
   import { useBookStore } from "@/stores/book";
 
-  import { useRoute } from "vue-router";
+  import { useRoute, useRouter } from "vue-router";
   import { watch } from "vue";
 
   import CategorySelection from "@/components/CategorySelection.vue";
 
   const route = useRoute();
+  const router = useRouter();
+
   const bookStore = useBookStore();
 
   watch(
     () => route.params.id,
-    (newId) => {
-      bookStore.fetchBooks(Number(newId));
+    async (newId) => {
+      const id = Array.isArray(newId) ? newId[0] : newId;
+
+      if (id !== undefined) {
+        const success = await bookStore.fetchBooks(id);
+
+        if (!success) {
+          router.push({ name: "error" });
+        }
+      }
     },
     { immediate: true }
   );

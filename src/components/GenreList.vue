@@ -29,7 +29,7 @@
       v-for="categoryId in group.categoryIds"
       v-bind:key="`selection-${categoryId}`"
     >
-      <RouterLink :to="`/category/${categoryId}`">
+      <RouterLink :to="`/category/${categoryList.get(categoryId)}`">
         <slot name="link" :categoryName="categoryList.get(categoryId)"></slot>
       </RouterLink>
     </li>
