@@ -111,7 +111,7 @@
           console.log("Error placing order", placeOrderResponse);
         } else {
           form.checkoutStatus = "OK";
-          await router.push({ name: "confirmation-view" });
+          await router.push({ name: "confirmation" });
         }
       } catch (e) {
         form.checkoutStatus = "SERVER_ERROR";
