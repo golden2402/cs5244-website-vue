@@ -23,6 +23,10 @@ export const useOrderDetailsStore = defineStore("OrderDetailsStore", {
   actions: {
     setOrderDetails(orderDetails?: OrderDetails) {
       this.orderDetails = orderDetails;
+      
+      if (orderDetails) {
+        sessionStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(orderDetails));
+      }
     },
     hasOrderDetails() {
       const orderDetails = this.orderDetails;
@@ -33,6 +37,7 @@ export const useOrderDetailsStore = defineStore("OrderDetailsStore", {
     },
     clearOrderDetails() {
       this.setOrderDetails(undefined);
+      sessionStorage.removeItem(ORDER_STORAGE_KEY);
     }
   }
 });
