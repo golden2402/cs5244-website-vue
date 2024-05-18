@@ -1,46 +1,35 @@
-# bookmart-vue (fetch)
+# Bookmart (Vue)
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a semester-long project I created for an undisclosed class at Virginia Tech. It is an eCommerce-like website written in Vue that had a backend supported by Jakarta EE (course choice), that I designed in Figma and implemented from scratch.
 
-## Recommended IDE Setup
+I have chosen not to include the Jakarta EE backend because much of it was fill-in-the-blank template work&mdash;it doesn't reflect any of my personal ability.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Images & Content
 
-## Type Support for `.vue` Imports in TS
+This README was written long after class conclusion, so the provided resources are ones submitted for assignments:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### HTML Draft Implementations (2)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+#### Splash Page
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+![Splash Page](.images/chrome_Fv0eAuCMt3.png)
 
-## Customize configuration
+#### Navbar Dropdown
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+<video autoplay>
+    <source src=".images/chrome_g4zHvKx32E.mp4" type="video/mp4" />
+</video>
 
-## Project Setup
+#### Category Page
 
-```sh
-npm install
-```
+![Category Page](.images/chrome_hObEn5dnPQ.png)
 
-### Compile and Hot-Reload for Development
+### Vue Implementation (3)
 
-```sh
-npm run dev
-```
+These are images of the site functional with the supporting Java backend.
 
-### Type-Check, Compile and Minify for Production
+#### Category Page w/ Page Querying
+![Category Page w/ Page Querying](.images/chrome_HaXvDXeCpR.png)
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+#### Checkout Page
+![Checkout Page](.images/chrome_xoX90Bx7Rz.png)
