@@ -14,17 +14,11 @@ This README was written long after class conclusion, so the provided resources a
 
 ![Splash Page](.images/chrome_Fv0eAuCMt3.png)
 
-#### Navbar Dropdown
-
-<video autoplay>
-    <source src=".images/chrome_g4zHvKx32E.mp4" type="video/mp4" />
-</video>
-
 #### Category Page
 
 ![Category Page](.images/chrome_hObEn5dnPQ.png)
 
-### Vue Implementation (3)
+### Vue Implementation (2)
 
 These are images of the site functional with the supporting Java backend.
 
